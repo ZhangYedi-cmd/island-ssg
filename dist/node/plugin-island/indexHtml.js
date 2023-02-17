@@ -8,6 +8,22 @@ function islandHtmlPlugin() {
     return {
         name: "island:index-html",
         apply: "serve",
+        // 自动注入script
+        transformIndexHtml(html) {
+            return {
+                html,
+                tags: [
+                    {
+                        tag: 'script',
+                        attrs: {
+                            type: 'module',
+                            src: `/@fs/${constants_1.CLIENT_ENTRY_PATH}`
+                        },
+                        injectTo: 'body'
+                    }
+                ]
+            };
+        },
         // get http request
         configureServer(server) {
             return () => {

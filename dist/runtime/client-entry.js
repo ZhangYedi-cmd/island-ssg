@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const jsx_runtime_1 = require("react/jsx-runtime");
 const client_1 = require("react-dom/client");
 const App_1 = require("./App");
+//CSR 入口
 function renderInBrowser() {
     const containerEl = document.getElementById("root");
     if (!containerEl) {

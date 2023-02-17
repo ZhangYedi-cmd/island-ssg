@@ -1,12 +1,28 @@
 import {readFile} from "fs/promises";
 import {Plugin} from "vite";
-import {DEFAULT_HTML_PATH} from "../constants";
+import {CLIENT_ENTRY_PATH, DEFAULT_HTML_PATH} from "../constants";
 
 // 使 vite dev server 响应 HTML
 export function islandHtmlPlugin(): Plugin {
   return {
     name: "island:index-html",
     apply: "serve",
+    // 自动注入script
+    transformIndexHtml(html) {
+      return {
+        html,
+        tags: [
+          {
+            tag: 'script',
+            attrs: {
+              type: 'module',
+              src: `/@fs/${CLIENT_ENTRY_PATH}`
+            },
+            injectTo: 'body'
+          }
+        ]
+      }
+    },
     // get http request
     configureServer(server) {
       return () => {
