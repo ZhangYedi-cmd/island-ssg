@@ -16,7 +16,6 @@ cli
   .command("[root]", "start dev server")
   .alias("dev")
   .action(async (root: string) => {
-    console.log(root)
     // 启动 vite Dev Server 服务
     root = root ? path.resolve(root) : process.cwd();
     const server = await createDevServer(root);

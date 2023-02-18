@@ -12,7 +12,7 @@ import pluginReact from "@vitejs/plugin-react";
 
 export const bundle = async (root: string) => {
   try {
-    const resolveViteConfig = (isServer: boolean): InlineConfig => ({
+    const resolveViteConfig = (isServer: boolean) => ({
       mode: "production",
       root,
       plugins: [pluginReact()],
@@ -56,7 +56,7 @@ export const bundle = async (root: string) => {
 export const build = async (root: string = process.cwd()) => {
   const [clientBundle] = await bundle(root)
   // 拿到打包后SSR生成DOM脚本
-  const serverEntryPath = path.join(PACKAGE_ROOT, root, ".temp", "ssr-entry.js")
+  const serverEntryPath = path.join( root, ".temp", "ssr-entry.js")
   const {render} = require(serverEntryPath)
   await renderPage(render, root, clientBundle)
 }
