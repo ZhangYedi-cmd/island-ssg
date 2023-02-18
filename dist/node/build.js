@@ -20,10 +20,7 @@ const bundle = async (root) => {
                     outDir: isServerBuild ? '.temp' : 'build',
                     rollupOptions: {
                         input: isServerBuild ? constants_1.SERVER_ENTRY_PATH : constants_1.CLIENT_ENTRY_PATH,
-                        output: {
-                            assetFileNames: '[name]',
-                            format: isServerBuild ? 'cjs' : 'esm'
-                        }
+                        output: isServerBuild ? { format: 'cjs', entryFileNames: '[name].js' } : { format: 'esm' }
                     }
                 }
             };
@@ -35,6 +32,7 @@ const bundle = async (root) => {
             return (0, vite_1.build)(resolveViteConfig(true));
         };
         console.log("building for server and client 🚀！");
+        // 优化build流程，服务端打包流程，客户端打包流程并发执行。
         const [clientBundle, serverBundle] = await Promise.all([
             clientBuild(),
             serverBuild()
@@ -47,8 +45,19 @@ const bundle = async (root) => {
     }
 };
 exports.bundle = bundle;
+/**
+ * build:
+ * SSG = SSR + CSR
+ * SSR: 对我们的React代码进行分析，将其转换为DOM
+ * CSR：将我们写的JS逻辑代码注入到SSR生成的HTML-DOM中
+ */
 const build = async (root) => {
     const [clientBundle, serverBundle] = await (0, exports.bundle)(root);
-    const serverEntryPath = path.join(root, ".temp", "ssr-entry.js");
+    // 拿到打包后SSR生成DOM脚本
+    const serverEntryPath = path.join(constants_1.PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
+    const { render } = require(serverEntryPath);
+    console.log(render);
+    // const html = renderPage(render, root, clientBundle)
+    // console.log(html)
 };
 exports.build = build;
