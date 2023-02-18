@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "bin": {
-    "island": "bin/island.js"
+    "il": "bin/island.js"
   },
   "scripts": {
     "start": "tsc -w",
@@ -14,14 +14,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
     "@types/node": "^18.13.0",
     "typescript": "^4.9.5"
   },
   "dependencies": {
     "@vitejs/plugin-react": "^3.1.0",
     "cac": "^6.7.14",
+    "fs-extra": "^11.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "vite": "^4.1.1"
+    "vite": "^3.2.1"
   }
 }
