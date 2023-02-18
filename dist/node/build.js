@@ -10,21 +10,25 @@ exports.build = exports.bundle = void 0;
 const vite_1 = require("vite");
 const constants_1 = require("./constants");
 const path = require("path");
+const renderPage_1 = require("./renderPage");
+const plugin_react_1 = require("@vitejs/plugin-react");
 const bundle = async (root) => {
     try {
-        const resolveViteConfig = (isServerBuild) => {
-            return {
-                mode: 'production',
-                root,
-                build: {
-                    outDir: isServerBuild ? '.temp' : 'build',
-                    rollupOptions: {
-                        input: isServerBuild ? constants_1.SERVER_ENTRY_PATH : constants_1.CLIENT_ENTRY_PATH,
-                        output: isServerBuild ? { format: 'cjs', entryFileNames: '[name].js' } : { format: 'esm' }
-                    }
-                }
-            };
-        };
+        const resolveViteConfig = (isServer) => ({
+            mode: "production",
+            root,
+            plugins: [(0, plugin_react_1.default)()],
+            build: {
+                ssr: isServer,
+                outDir: isServer ? ".temp" : "build",
+                rollupOptions: {
+                    input: isServer ? constants_1.SERVER_ENTRY_PATH : constants_1.CLIENT_ENTRY_PATH,
+                    output: {
+                        format: isServer ? "cjs" : "esm",
+                    },
+                },
+            },
+        });
         const clientBuild = () => {
             return (0, vite_1.build)(resolveViteConfig(false));
         };
@@ -50,14 +54,13 @@ exports.bundle = bundle;
  * SSG = SSR + CSR
  * SSR: 对我们的React代码进行分析，将其转换为DOM
  * CSR：将我们写的JS逻辑代码注入到SSR生成的HTML-DOM中
+ * 同构架构：一套代码 放到两个环境中执行
  */
-const build = async (root) => {
-    const [clientBundle, serverBundle] = await (0, exports.bundle)(root);
+const build = async (root = process.cwd()) => {
+    const [clientBundle] = await (0, exports.bundle)(root);
     // 拿到打包后SSR生成DOM脚本
     const serverEntryPath = path.join(constants_1.PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
     const { render } = require(serverEntryPath);
-    console.log(render);
-    // const html = renderPage(render, root, clientBundle)
-    // console.log(html)
+    await (0, renderPage_1.renderPage)(render, root, clientBundle);
 };
 exports.build = build;
