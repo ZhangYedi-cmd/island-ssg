@@ -7,27 +7,46 @@ var __commonJS = (cb, mod) => function __require() {
 var require_package = __commonJS({
   "package.json"(exports, module) {
     module.exports = {
-      name: "island-ssg",
-      version: "1.0.0",
+      name: "@yedizhang/island-ssg",
+      version: "1.0.3",
       description: "",
-      main: "index.js",
+      main: "./dist/cli.mjs",
       bin: {
         island: "bin/island.mjs"
       },
       scripts: {
-        "start tsup": "tsup --watch",
-        "build tsup": "tsup",
-        "start tsc": "tsc -w",
-        "build tsc": "tsc"
+        start: "tsup --watch",
+        build: "tsup",
+        lint: "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
+        prepare: "husky install"
+      },
+      "lint-staged": {
+        "**/*.{js,jsx,tsx,ts}": [
+          "npm run lint",
+          "git add ."
+        ],
+        "**/*.{scss}": [
+          "npm run lint:style",
+          "git add ."
+        ]
       },
       keywords: [],
       author: "",
       license: "ISC",
       devDependencies: {
+        "@commitlint/cli": "^17.4.4",
+        "@commitlint/config-conventional": "^17.4.4",
         "@types/fs-extra": "^9.0.13",
         "@types/node": "^18.11.7",
         "@types/react": "^18.0.24",
         "@types/react-dom": "^18.0.8",
+        "@typescript-eslint/eslint-plugin": "^5.52.0",
+        "@typescript-eslint/parser": "^5.52.0",
+        commitlint: "^17.4.4",
+        eslint: "^8.34.0",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        husky: "^8.0.3",
         rollup: "^3.2.3",
         serve: "^14.0.1",
         tsup: "^6.5.0",
@@ -36,8 +55,11 @@ var require_package = __commonJS({
       dependencies: {
         "@vitejs/plugin-react": "^2.2.0",
         cac: "^6.7.14",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-prettier": "^4.2.1",
         "fs-extra": "^10.1.0",
         ora: "^6.1.2",
+        prettier: "^2.8.4",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
         vite: "^3.2.1"
@@ -56,8 +78,18 @@ var _vite = require('vite');
 var _path = require('path'); var path = _interopRequireWildcard(_path);
 var PACKAGE_ROOT = _path.join.call(void 0, __dirname, "..");
 var DEFAULT_HTML_PATH = _path.join.call(void 0, PACKAGE_ROOT, "index.html");
-var CLIENT_ENTRY_PATH = _path.join.call(void 0, PACKAGE_ROOT, "src", "runtime", "client-entry.tsx");
-var SERVER_ENTRY_PATH = _path.join.call(void 0, PACKAGE_ROOT, "src", "runtime", "ssr-entry.tsx");
+var CLIENT_ENTRY_PATH = _path.join.call(void 0, 
+  PACKAGE_ROOT,
+  "src",
+  "runtime",
+  "client-entry.tsx"
+);
+var SERVER_ENTRY_PATH = _path.join.call(void 0, 
+  PACKAGE_ROOT,
+  "src",
+  "runtime",
+  "ssr-entry.tsx"
+);
 
 // src/node/build.ts
 
@@ -67,7 +99,9 @@ var SERVER_ENTRY_PATH = _path.join.call(void 0, PACKAGE_ROOT, "src", "runtime", 
 var _fsextra = require('fs-extra'); var _fsextra2 = _interopRequireDefault(_fsextra);
 var renderPage = async (render, root, clientBundle) => {
   const html = render();
-  const clientChunk = clientBundle.output.find((chunk) => chunk.type === "chunk" && chunk.isEntry);
+  const clientChunk = clientBundle.output.find(
+    (chunk) => chunk.type === "chunk" && chunk.isEntry
+  );
   const res = `
   <!doctype html>
   <html lang="en">
@@ -112,7 +146,7 @@ var bundle = async (root) => {
       }
     });
     const spinner = _ora2.default.call(void 0, );
-    spinner.start(`Building client + server bundles...`);
+    spinner.start("Building client + server bundles...");
     const clientBuild = () => _vite.build.call(void 0, resolveViteConfig(false));
     const serverBuild = () => _vite.build.call(void 0, resolveViteConfig(true));
     const [clientBundle, serverBundle] = await Promise.all([
