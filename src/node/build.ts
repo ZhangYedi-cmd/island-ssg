@@ -4,15 +4,17 @@
  *  2. 将CSR打包产物渲染 RenderToString
  *  3. 返回HTML
  */
-import {build as viteBuild, InlineConfig} from "vite";
+import {build as viteBuild} from "vite";
 import {CLIENT_ENTRY_PATH, PACKAGE_ROOT, SERVER_ENTRY_PATH} from "./constants";
 import * as path from "path";
 import {renderPage} from "./renderPage";
 import pluginReact from "@vitejs/plugin-react";
+import ora from "ora"
+import {RollupOutput} from "rollup";
 
 export const bundle = async (root: string) => {
   try {
-    const resolveViteConfig = (isServer: boolean): InlineConfig => ({
+    const resolveViteConfig = (isServer: boolean) => ({
       mode: "production",
       root,
       plugins: [pluginReact()],
@@ -27,20 +29,21 @@ export const bundle = async (root: string) => {
         },
       },
     });
-    const clientBuild = () => {
-      return viteBuild(resolveViteConfig(false))
-    }
-    const serverBuild = () => {
-      return viteBuild(resolveViteConfig(true))
-    }
-    console.log("building for server and client 🚀！")
+    const spinner = ora();
+    spinner.start(`Building client + server bundles...`);
+
+    // @ts-ignore
+    const clientBuild = () => viteBuild(resolveViteConfig(false))
+    // @ts-ignore
+    const serverBuild = () => viteBuild(resolveViteConfig(true))
+
     // 优化build流程，服务端打包流程，客户端打包流程并发执行。
     const [clientBundle, serverBundle] = await Promise.all([
       clientBuild(),
       serverBuild()
     ])
-    console.log('build done 🔥')
-    return [clientBundle, serverBundle]
+    spinner.stop()
+    return [clientBundle, serverBundle] as [RollupOutput, RollupOutput];
   } catch (e) {
     console.log(e)
   }
@@ -57,7 +60,7 @@ export const build = async (root: string = process.cwd()) => {
   const [clientBundle] = await bundle(root)
   // 拿到打包后SSR生成DOM脚本
   const serverEntryPath = path.join(PACKAGE_ROOT, root, ".temp", "ssr-entry.js")
-  const {render} = require(serverEntryPath)
+  const {render} = await import(serverEntryPath)
   await renderPage(render, root, clientBundle)
 }
 
