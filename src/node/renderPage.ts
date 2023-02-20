@@ -1,6 +1,6 @@
-import {join} from "path";
+import { join } from 'path'
 // @ts-ignore
-import fs from "fs-extra";
+import fs from 'fs-extra'
 
 /**
  * 渲染最终的HTML
@@ -11,7 +11,9 @@ export const renderPage = async (
   clientBundle: any
 ) => {
   const html = render()
-  const clientChunk = clientBundle.output.find(chunk => chunk.type === 'chunk' && chunk.isEntry)
+  const clientChunk = clientBundle.output.find(
+    (chunk) => chunk.type === 'chunk' && chunk.isEntry
+  )
   const res = `
   <!doctype html>
   <html lang="en">
@@ -30,7 +32,7 @@ export const renderPage = async (
   </body>
   </html>
 `.trim()
-  await fs.ensureDir(join(root, "build"));
-  await fs.writeFile(join(root, "build/index.html"), res);
-  await fs.remove(join(root, ".temp"));
+  await fs.ensureDir(join(root, 'build'))
+  await fs.writeFile(join(root, 'build/index.html'), res)
+  await fs.remove(join(root, '.temp'))
 }

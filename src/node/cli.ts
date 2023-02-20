@@ -1,16 +1,16 @@
-import {cac} from "cac";
-import {createDevServer} from "./dev.js";
-import {build} from "./build";
+import { cac } from 'cac'
+import { createDevServer } from './dev.js'
+import { build } from './build'
 
-const version = require("../../package.json").version;
-const cli = cac("island").version(version).help();
+const version = require('../../package.json').version
+const cli = cac('island').version(version).help()
 // const path = require('path')
 
 cli
-  .command("build [root]", "build for production")
+  .command('build [root]', 'build for production')
   .action(async (root: string) => {
     await build(root)
-  });
+  })
 
 // cli
 //   .command("[root]", "start dev server")
@@ -23,4 +23,4 @@ cli
 //     server.printUrls();
 //   });
 
-cli.parse();
+cli.parse()

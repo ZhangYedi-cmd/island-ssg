@@ -7,18 +7,17 @@ var __commonJS = (cb, mod) => function __require() {
 var require_package = __commonJS({
   "package.json"(exports, module) {
     module.exports = {
-      name: "island-ssg",
+      name: "@yedizhang/island-ssg",
       version: "1.0.0",
       description: "",
-      main: "index.js",
+      main: "./dist/cli.mjs",
       bin: {
         island: "bin/island.mjs"
       },
       scripts: {
-        "start tsup": "tsup --watch",
-        "build tsup": "tsup",
-        "start tsc": "tsc -w",
-        "build tsc": "tsc"
+        start: "tsup --watch",
+        build: "tsup",
+        lint: "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./"
       },
       keywords: [],
       author: "",
@@ -28,6 +27,12 @@ var require_package = __commonJS({
         "@types/node": "^18.11.7",
         "@types/react": "^18.0.24",
         "@types/react-dom": "^18.0.8",
+        "@typescript-eslint/eslint-plugin": "^5.52.0",
+        "@typescript-eslint/parser": "^5.52.0",
+        eslint: "^8.34.0",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        husky: "^8.0.3",
         rollup: "^3.2.3",
         serve: "^14.0.1",
         tsup: "^6.5.0",
@@ -36,8 +41,11 @@ var require_package = __commonJS({
       dependencies: {
         "@vitejs/plugin-react": "^2.2.0",
         cac: "^6.7.14",
+        "eslint-config-prettier": "^8.6.0",
+        "eslint-plugin-prettier": "^4.2.1",
         "fs-extra": "^10.1.0",
         ora: "^6.1.2",
+        prettier: "^2.8.4",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
         vite: "^3.2.1"
@@ -63,8 +71,18 @@ import { build as viteBuild } from "vite";
 import { join } from "path";
 var PACKAGE_ROOT = join(__dirname, "..");
 var DEFAULT_HTML_PATH = join(PACKAGE_ROOT, "index.html");
-var CLIENT_ENTRY_PATH = join(PACKAGE_ROOT, "src", "runtime", "client-entry.tsx");
-var SERVER_ENTRY_PATH = join(PACKAGE_ROOT, "src", "runtime", "ssr-entry.tsx");
+var CLIENT_ENTRY_PATH = join(
+  PACKAGE_ROOT,
+  "src",
+  "runtime",
+  "client-entry.tsx"
+);
+var SERVER_ENTRY_PATH = join(
+  PACKAGE_ROOT,
+  "src",
+  "runtime",
+  "ssr-entry.tsx"
+);
 
 // src/node/build.ts
 import * as path2 from "path";
@@ -74,7 +92,9 @@ import { join as join2 } from "path";
 import fs from "fs-extra";
 var renderPage = async (render, root, clientBundle) => {
   const html = render();
-  const clientChunk = clientBundle.output.find((chunk) => chunk.type === "chunk" && chunk.isEntry);
+  const clientChunk = clientBundle.output.find(
+    (chunk) => chunk.type === "chunk" && chunk.isEntry
+  );
   const res = `
   <!doctype html>
   <html lang="en">
@@ -119,7 +139,7 @@ var bundle = async (root) => {
       }
     });
     const spinner = ora();
-    spinner.start(`Building client + server bundles...`);
+    spinner.start("Building client + server bundles...");
     const clientBuild = () => viteBuild(resolveViteConfig(false));
     const serverBuild = () => viteBuild(resolveViteConfig(true));
     const [clientBundle, serverBundle] = await Promise.all([
