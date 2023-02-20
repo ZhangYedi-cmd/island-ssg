@@ -1,12 +1,5 @@
 var __getOwnPropNames = Object.getOwnPropertyNames;
-var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
-  get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
-}) : x)(function(x) {
-  if (typeof require !== "undefined")
-    return require.apply(this, arguments);
-  throw new Error('Dynamic require of "' + x + '" is not supported');
-});
-var __commonJS = (cb, mod) => function __require2() {
+var __commonJS = (cb, mod) => function __require() {
   return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
 };
 
@@ -19,123 +12,66 @@ var require_package = __commonJS({
       description: "",
       main: "index.js",
       bin: {
-        island: "bin/island.js"
+        island: "bin/island.mjs"
       },
       scripts: {
-        start: "tsup --watch",
-        build: "tsup",
-        test: 'echo "Error: no test specified" && exit 1'
+        "start tsup": "tsup --watch",
+        "build tsup": "tsup",
+        "start tsc": "tsc -w",
+        "build tsc": "tsc"
       },
       keywords: [],
       author: "",
       license: "ISC",
       devDependencies: {
-        "@types/fs-extra": "^11.0.1",
-        "@types/node": "^18.13.0",
-        typescript: "^4.9.5"
+        "@types/fs-extra": "^9.0.13",
+        "@types/node": "^18.11.7",
+        "@types/react": "^18.0.24",
+        "@types/react-dom": "^18.0.8",
+        rollup: "^3.2.3",
+        serve: "^14.0.1",
+        tsup: "^6.5.0",
+        typescript: "^4.8.4"
       },
       dependencies: {
-        "@vitejs/plugin-react": "^3.1.0",
+        "@vitejs/plugin-react": "^2.2.0",
         cac: "^6.7.14",
-        "fs-extra": "^11.1.0",
+        "fs-extra": "^10.1.0",
+        ora: "^6.1.2",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
-        tsup: "^6.1.0",
         vite: "^3.2.1"
       }
     };
   }
 });
 
+// node_modules/.pnpm/registry.npmmirror.com+tsup@6.6.3_typescript@4.9.5/node_modules/tsup/assets/esm_shims.js
+import { fileURLToPath } from "url";
+import path from "path";
+var getFilename = () => fileURLToPath(import.meta.url);
+var getDirname = () => path.dirname(getFilename());
+var __dirname = /* @__PURE__ */ getDirname();
+
 // src/node/cli.ts
 import { cac } from "cac";
 
-// src/node/dev.ts
-import { createServer as createViteDevServer } from "vite";
-
-// src/node/plugin-island/indexHtml.ts
-import { readFile } from "fs/promises";
+// src/node/build.ts
+import { build as viteBuild } from "vite";
 
 // src/node/constants/index.ts
 import { join } from "path";
 var PACKAGE_ROOT = join(__dirname, "..");
 var DEFAULT_HTML_PATH = join(PACKAGE_ROOT, "index.html");
-var CLIENT_ENTRY_PATH = join(
-  PACKAGE_ROOT,
-  "src",
-  "runtime",
-  "client-entry.tsx"
-);
-var SERVER_ENTRY_PATH = join(
-  PACKAGE_ROOT,
-  "src",
-  "runtime",
-  "ssr-entry.tsx"
-);
-
-// src/node/plugin-island/indexHtml.ts
-function islandHtmlPlugin() {
-  return {
-    name: "island:index-html",
-    apply: "serve",
-    // 自动注入script
-    transformIndexHtml(html) {
-      return {
-        html,
-        tags: [
-          {
-            tag: "script",
-            attrs: {
-              type: "module",
-              src: `/@fs/${CLIENT_ENTRY_PATH}`
-            },
-            injectTo: "body"
-          }
-        ]
-      };
-    },
-    // get http request
-    configureServer(server) {
-      return () => {
-        server.middlewares.use(async (req, res, next) => {
-          let html = await readFile(DEFAULT_HTML_PATH, "utf-8");
-          try {
-            html = await server.transformIndexHtml(
-              req.url,
-              html,
-              req.originalUrl
-            );
-            res.statusCode = 200;
-            res.setHeader("Content-Type", "text/html");
-            res.end(html);
-          } catch (e) {
-            return next(e);
-          }
-        });
-      };
-    }
-  };
-}
-
-// src/node/dev.ts
-import pluginReact from "@vitejs/plugin-react";
-async function createDevServer(root = process.cwd()) {
-  return createViteDevServer({
-    root,
-    plugins: [
-      islandHtmlPlugin(),
-      pluginReact()
-    ]
-  });
-}
+var CLIENT_ENTRY_PATH = join(PACKAGE_ROOT, "src", "runtime", "client-entry.tsx");
+var SERVER_ENTRY_PATH = join(PACKAGE_ROOT, "src", "runtime", "ssr-entry.tsx");
 
 // src/node/build.ts
-import { build as viteBuild } from "vite";
-import * as path from "path";
+import * as path2 from "path";
 
 // src/node/renderPage.ts
 import { join as join2 } from "path";
-import * as fs from "fs-extra";
+import fs from "fs-extra";
 var renderPage = async (render, root, clientBundle) => {
   const html = render();
   const clientChunk = clientBundle.output.find((chunk) => chunk.type === "chunk" && chunk.isEntry);
@@ -163,13 +99,14 @@ var renderPage = async (render, root, clientBundle) => {
 };
 
 // src/node/build.ts
-import pluginReact2 from "@vitejs/plugin-react";
+import pluginReact from "@vitejs/plugin-react";
+import ora from "ora";
 var bundle = async (root) => {
   try {
     const resolveViteConfig = (isServer) => ({
       mode: "production",
       root,
-      plugins: [pluginReact2()],
+      plugins: [pluginReact()],
       build: {
         ssr: isServer,
         outDir: isServer ? ".temp" : "build",
@@ -181,18 +118,15 @@ var bundle = async (root) => {
         }
       }
     });
-    const clientBuild = () => {
-      return viteBuild(resolveViteConfig(false));
-    };
-    const serverBuild = () => {
-      return viteBuild(resolveViteConfig(true));
-    };
-    console.log("building for server and client \u{1F680}\uFF01");
+    const spinner = ora();
+    spinner.start(`Building client + server bundles...`);
+    const clientBuild = () => viteBuild(resolveViteConfig(false));
+    const serverBuild = () => viteBuild(resolveViteConfig(true));
     const [clientBundle, serverBundle] = await Promise.all([
       clientBuild(),
       serverBuild()
     ]);
-    console.log("build done \u{1F525}");
+    spinner.stop();
     return [clientBundle, serverBundle];
   } catch (e) {
     console.log(e);
@@ -200,22 +134,15 @@ var bundle = async (root) => {
 };
 var build = async (root = process.cwd()) => {
   const [clientBundle] = await bundle(root);
-  const serverEntryPath = path.join(root, ".temp", "ssr-entry.js");
-  const { render } = __require(serverEntryPath);
+  const serverEntryPath = path2.join(PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
+  const { render } = await import(serverEntryPath);
   await renderPage(render, root, clientBundle);
 };
 
 // src/node/cli.ts
 var version = require_package().version;
 var cli = cac("island").version(version).help();
-var path2 = __require("path");
 cli.command("build [root]", "build for production").action(async (root) => {
   await build(root);
-});
-cli.command("[root]", "start dev server").alias("dev").action(async (root) => {
-  root = root ? path2.resolve(root) : process.cwd();
-  const server = await createDevServer(root);
-  await server.listen();
-  server.printUrls();
 });
 cli.parse();

@@ -1,5 +1,6 @@
 import {join} from "path";
-import * as fs from "fs-extra";
+// @ts-ignore
+import fs from "fs-extra";
 
 /**
  * 渲染最终的HTML
