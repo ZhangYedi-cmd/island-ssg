@@ -8,10 +8,9 @@ var require_package = __commonJS({
   "package.json"(exports, module) {
     module.exports = {
       name: "@yedizhang/island-ssg",
-      version: "1.0.1",
+      version: "1.0.2",
       description: "",
       main: "./dist/cli.mjs",
-      files: ["dist"],
       bin: {
         island: "bin/island.mjs"
       },
