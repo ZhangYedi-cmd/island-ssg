@@ -1,5 +1,4 @@
 import { join } from 'path'
-// @ts-ignore
 import fs from 'fs-extra'
 
 /**

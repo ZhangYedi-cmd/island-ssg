@@ -8,7 +8,7 @@ var require_package = __commonJS({
   "package.json"(exports, module) {
     module.exports = {
       name: "@yedizhang/island-ssg",
-      version: "1.0.2",
+      version: "1.0.3",
       description: "",
       main: "./dist/cli.mjs",
       bin: {
@@ -17,18 +17,32 @@ var require_package = __commonJS({
       scripts: {
         start: "tsup --watch",
         build: "tsup",
-        lint: "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./"
+        lint: "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
+        prepare: "husky install"
+      },
+      "lint-staged": {
+        "**/*.{js,jsx,tsx,ts}": [
+          "npm run lint",
+          "git add ."
+        ],
+        "**/*.{scss}": [
+          "npm run lint:style",
+          "git add ."
+        ]
       },
       keywords: [],
       author: "",
       license: "ISC",
       devDependencies: {
+        "@commitlint/cli": "^17.4.4",
+        "@commitlint/config-conventional": "^17.4.4",
         "@types/fs-extra": "^9.0.13",
         "@types/node": "^18.11.7",
         "@types/react": "^18.0.24",
         "@types/react-dom": "^18.0.8",
         "@typescript-eslint/eslint-plugin": "^5.52.0",
         "@typescript-eslint/parser": "^5.52.0",
+        commitlint: "^17.4.4",
         eslint: "^8.34.0",
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-react-hooks": "^4.6.0",

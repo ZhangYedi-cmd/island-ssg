@@ -32,9 +32,7 @@ export const bundle = async (root: string) => {
     const spinner = ora()
     spinner.start('Building client + server bundles...')
 
-    // @ts-ignore
     const clientBuild = () => viteBuild(resolveViteConfig(false))
-    // @ts-ignore
     const serverBuild = () => viteBuild(resolveViteConfig(true))
 
     // 优化build流程，服务端打包流程，客户端打包流程并发执行。
