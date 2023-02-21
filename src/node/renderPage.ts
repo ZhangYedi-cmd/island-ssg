@@ -1,5 +1,6 @@
 import { join } from 'path'
 import fs from 'fs-extra'
+import { RollupOutput } from 'rollup'
 
 /**
  * 渲染最终的HTML
@@ -7,7 +8,7 @@ import fs from 'fs-extra'
 export const renderPage = async (
   render: () => string,
   root: string,
-  clientBundle: any
+  clientBundle: RollupOutput
 ) => {
   const html = render()
   const clientChunk = clientBundle.output.find(
