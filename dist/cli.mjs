@@ -1,7 +1,13 @@
-var __getOwnPropNames = Object.getOwnPropertyNames;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
+import {
+  CLIENT_ENTRY_PATH,
+  PACKAGE_ROOT,
+  SERVER_ENTRY_PATH,
+  configPlugin
+} from "./chunk-IVVS4CUQ.mjs";
+import {
+  __commonJS,
+  resolveConfig
+} from "./chunk-ME5MTLVC.mjs";
 
 // package.json
 var require_package = __commonJS({
@@ -17,7 +23,8 @@ var require_package = __commonJS({
       scripts: {
         start: "tsup --watch",
         build: "tsup",
-        lint: "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
+        lint: "eslint --ext .ts,.tsx,.js,.jsx ./",
+        "lint:fix": "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
         prepare: "husky install"
       },
       "lint-staged": {
@@ -47,6 +54,7 @@ var require_package = __commonJS({
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-react-hooks": "^4.6.0",
         husky: "^8.0.3",
+        "lint-staged": "^13.1.2",
         rollup: "^3.2.3",
         serve: "^14.0.1",
         tsup: "^6.5.0",
@@ -62,47 +70,22 @@ var require_package = __commonJS({
         prettier: "^2.8.4",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-router-dom": "6.4.3",
         vite: "^3.2.1"
       }
     };
   }
 });
 
-// node_modules/.pnpm/registry.npmmirror.com+tsup@6.6.3_typescript@4.9.5/node_modules/tsup/assets/esm_shims.js
-import { fileURLToPath } from "url";
-import path from "path";
-var getFilename = () => fileURLToPath(import.meta.url);
-var getDirname = () => path.dirname(getFilename());
-var __dirname = /* @__PURE__ */ getDirname();
-
 // src/node/cli.ts
 import { cac } from "cac";
 
 // src/node/build.ts
 import { build as viteBuild } from "vite";
-
-// src/node/constants/index.ts
-import { join } from "path";
-var PACKAGE_ROOT = join(__dirname, "..");
-var DEFAULT_HTML_PATH = join(PACKAGE_ROOT, "index.html");
-var CLIENT_ENTRY_PATH = join(
-  PACKAGE_ROOT,
-  "src",
-  "runtime",
-  "client-entry.tsx"
-);
-var SERVER_ENTRY_PATH = join(
-  PACKAGE_ROOT,
-  "src",
-  "runtime",
-  "ssr-entry.tsx"
-);
-
-// src/node/build.ts
-import * as path2 from "path";
+import * as path from "path";
 
 // src/node/renderPage.ts
-import { join as join2 } from "path";
+import { join } from "path";
 import fs from "fs-extra";
 var renderPage = async (render, root, clientBundle) => {
   const html = render();
@@ -127,20 +110,23 @@ var renderPage = async (render, root, clientBundle) => {
   </body>
   </html>
 `.trim();
-  await fs.ensureDir(join2(root, "build"));
-  await fs.writeFile(join2(root, "build/index.html"), res);
-  await fs.remove(join2(root, ".temp"));
+  await fs.ensureDir(join(root, "build"));
+  await fs.writeFile(join(root, "build/index.html"), res);
+  await fs.remove(join(root, ".temp"));
 };
 
 // src/node/build.ts
 import pluginReact from "@vitejs/plugin-react";
 import ora from "ora";
-var bundle = async (root) => {
+var bundle = async (root, config) => {
   try {
     const resolveViteConfig = (isServer) => ({
       mode: "production",
       root,
-      plugins: [pluginReact()],
+      plugins: [pluginReact(), configPlugin(config)],
+      ssr: {
+        noExternal: ["react-router-dom"]
+      },
       build: {
         ssr: isServer,
         outDir: isServer ? ".temp" : "build",
@@ -166,9 +152,9 @@ var bundle = async (root) => {
     console.log(e);
   }
 };
-var build = async (root = process.cwd()) => {
-  const [clientBundle] = await bundle(root);
-  const serverEntryPath = path2.join(PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
+var build = async (root = process.cwd(), config) => {
+  const [clientBundle] = await bundle(root, config);
+  const serverEntryPath = path.join(PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
   const { render } = await import(serverEntryPath);
   await renderPage(render, root, clientBundle);
 };
@@ -177,6 +163,19 @@ var build = async (root = process.cwd()) => {
 var version = require_package().version;
 var cli = cac("island").version(version).help();
 cli.command("build [root]", "build for production").action(async (root) => {
-  await build(root);
+  const config = await resolveConfig(root, "build", "production");
+  await build(root, config);
+});
+cli.command("[root]", "start dev server").alias("dev").action(async (root) => {
+  const createServer = async () => {
+    const { createDevServer } = await import("./dev.mjs");
+    const server = await createDevServer(root, async () => {
+      await server.close();
+      await createServer();
+    });
+    await server.listen();
+    server.printUrls();
+  };
+  await createServer();
 });
 cli.parse();

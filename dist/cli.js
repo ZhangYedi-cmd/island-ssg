@@ -1,10 +1,16 @@
-"use strict"; function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { newObj[key] = obj[key]; } } } newObj.default = obj; return newObj; } } function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }var __getOwnPropNames = Object.getOwnPropertyNames;
-var __commonJS = (cb, mod) => function __require() {
-  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
-};
+"use strict"; function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { newObj[key] = obj[key]; } } } newObj.default = obj; return newObj; } } function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; } function _optionalChain(ops) { let lastAccessLHS = undefined; let value = ops[0]; let i = 1; while (i < ops.length) { const op = ops[i]; const fn = ops[i + 1]; i += 2; if ((op === 'optionalAccess' || op === 'optionalCall') && value == null) { return undefined; } if (op === 'access' || op === 'optionalAccess') { lastAccessLHS = value; value = fn(value); } else if (op === 'call' || op === 'optionalCall') { value = fn((...args) => value.call(lastAccessLHS, ...args)); lastAccessLHS = undefined; } } return value; }
+
+
+
+
+var _chunkGOHTTJGVjs = require('./chunk-GOHTTJGV.js');
+
+
+
+var _chunkCJ6ITQK3js = require('./chunk-CJ6ITQK3.js');
 
 // package.json
-var require_package = __commonJS({
+var require_package = _chunkCJ6ITQK3js.__commonJS.call(void 0, {
   "package.json"(exports, module) {
     module.exports = {
       name: "@yedizhang/island-ssg",
@@ -17,7 +23,8 @@ var require_package = __commonJS({
       scripts: {
         start: "tsup --watch",
         build: "tsup",
-        lint: "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
+        lint: "eslint --ext .ts,.tsx,.js,.jsx ./",
+        "lint:fix": "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
         prepare: "husky install"
       },
       "lint-staged": {
@@ -47,6 +54,7 @@ var require_package = __commonJS({
         "eslint-plugin-react": "^7.32.2",
         "eslint-plugin-react-hooks": "^4.6.0",
         husky: "^8.0.3",
+        "lint-staged": "^13.1.2",
         rollup: "^3.2.3",
         serve: "^14.0.1",
         tsup: "^6.5.0",
@@ -62,6 +70,7 @@ var require_package = __commonJS({
         prettier: "^2.8.4",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-router-dom": "6.4.3",
         vite: "^3.2.1"
       }
     };
@@ -73,26 +82,7 @@ var _cac = require('cac');
 
 // src/node/build.ts
 var _vite = require('vite');
-
-// src/node/constants/index.ts
 var _path = require('path'); var path = _interopRequireWildcard(_path);
-var PACKAGE_ROOT = _path.join.call(void 0, __dirname, "..");
-var DEFAULT_HTML_PATH = _path.join.call(void 0, PACKAGE_ROOT, "index.html");
-var CLIENT_ENTRY_PATH = _path.join.call(void 0, 
-  PACKAGE_ROOT,
-  "src",
-  "runtime",
-  "client-entry.tsx"
-);
-var SERVER_ENTRY_PATH = _path.join.call(void 0, 
-  PACKAGE_ROOT,
-  "src",
-  "runtime",
-  "ssr-entry.tsx"
-);
-
-// src/node/build.ts
-
 
 // src/node/renderPage.ts
 
@@ -128,17 +118,20 @@ var renderPage = async (render, root, clientBundle) => {
 // src/node/build.ts
 var _pluginreact = require('@vitejs/plugin-react'); var _pluginreact2 = _interopRequireDefault(_pluginreact);
 var _ora = require('ora'); var _ora2 = _interopRequireDefault(_ora);
-var bundle = async (root) => {
+var bundle = async (root, config) => {
   try {
     const resolveViteConfig = (isServer) => ({
       mode: "production",
       root,
-      plugins: [_pluginreact2.default.call(void 0, )],
+      plugins: [_pluginreact2.default.call(void 0, ), _chunkGOHTTJGVjs.configPlugin.call(void 0, config)],
+      ssr: {
+        noExternal: ["react-router-dom"]
+      },
       build: {
         ssr: isServer,
         outDir: isServer ? ".temp" : "build",
         rollupOptions: {
-          input: isServer ? SERVER_ENTRY_PATH : CLIENT_ENTRY_PATH,
+          input: isServer ? _chunkGOHTTJGVjs.SERVER_ENTRY_PATH : _chunkGOHTTJGVjs.CLIENT_ENTRY_PATH,
           output: {
             format: isServer ? "cjs" : "esm"
           }
@@ -159,9 +152,9 @@ var bundle = async (root) => {
     console.log(e);
   }
 };
-var build = async (root = process.cwd()) => {
-  const [clientBundle] = await bundle(root);
-  const serverEntryPath = path.join(PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
+var build = async (root = process.cwd(), config) => {
+  const [clientBundle] = await bundle(root, config);
+  const serverEntryPath = path.join(_chunkGOHTTJGVjs.PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
   const { render } = await Promise.resolve().then(() => require(serverEntryPath));
   await renderPage(render, root, clientBundle);
 };
@@ -170,6 +163,19 @@ var build = async (root = process.cwd()) => {
 var version = require_package().version;
 var cli = _cac.cac.call(void 0, "island").version(version).help();
 cli.command("build [root]", "build for production").action(async (root) => {
-  await build(root);
+  const config = await _chunkCJ6ITQK3js.resolveConfig.call(void 0, root, "build", "production");
+  await build(root, config);
+});
+cli.command("[root]", "start dev server").alias("dev").action(async (root) => {
+  const createServer = async () => {
+    const { createDevServer } = await Promise.resolve().then(() => require("./dev.js"));
+    const server = await createDevServer(root, async () => {
+      await server.close();
+      await createServer();
+    });
+    await server.listen();
+    server.printUrls();
+  };
+  await createServer();
 });
 cli.parse();
