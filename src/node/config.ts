@@ -37,10 +37,7 @@ const resolveUserConfig = async (
   const configPath = getUserConfigPath(root)
   // 解析配置文件 导入vite已有的API
   const result = await loadConfigFromFile(
-    {
-      command,
-      mode
-    },
+    { command, mode },
     configPath,
     root
   )

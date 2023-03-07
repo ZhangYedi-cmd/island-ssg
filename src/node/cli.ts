@@ -1,6 +1,7 @@
-import { cac } from 'cac'
-import { createDevServer } from './dev.js'
-import { build } from './build'
+import {cac} from 'cac'
+import {createDevServer} from './dev.js'
+import {build} from './build'
+import {resolveConfig} from "./config";
 
 const version = require('../../package.json').version
 const cli = cac('island').version(version).help()
@@ -8,7 +9,8 @@ const cli = cac('island').version(version).help()
 cli
   .command('build [root]', 'build for production')
   .action(async (root: string) => {
-    await build(root)
+    const config = await resolveConfig(root, "build", "production")
+    await build(root,config)
   })
 
 cli
@@ -16,7 +18,7 @@ cli
   .alias('dev')
   .action(async (root: string) => {
     const createServer = async () => {
-      const { createDevServer } = await import('./dev')
+      const {createDevServer} = await import('./dev')
       const server = await createDevServer(root, async () => {
         await server.close()
         await createServer()

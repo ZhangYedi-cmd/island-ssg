@@ -2,13 +2,15 @@
 
 
 
-var _chunkWZAQ3NAPjs = require('./chunk-WZAQ3NAP.js');
+
+var _chunkGOHTTJGVjs = require('./chunk-GOHTTJGV.js');
 
 
-var _chunkNIMBE7W3js = require('./chunk-NIMBE7W3.js');
+
+var _chunkCJ6ITQK3js = require('./chunk-CJ6ITQK3.js');
 
 // package.json
-var require_package = _chunkNIMBE7W3js.__commonJS.call(void 0, {
+var require_package = _chunkCJ6ITQK3js.__commonJS.call(void 0, {
   "package.json"(exports, module) {
     module.exports = {
       name: "@yedizhang/island-ssg",
@@ -68,6 +70,7 @@ var require_package = _chunkNIMBE7W3js.__commonJS.call(void 0, {
         prettier: "^2.8.4",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-router-dom": "6.4.3",
         vite: "^3.2.1"
       }
     };
@@ -115,17 +118,20 @@ var renderPage = async (render, root, clientBundle) => {
 // src/node/build.ts
 var _pluginreact = require('@vitejs/plugin-react'); var _pluginreact2 = _interopRequireDefault(_pluginreact);
 var _ora = require('ora'); var _ora2 = _interopRequireDefault(_ora);
-var bundle = async (root) => {
+var bundle = async (root, config) => {
   try {
     const resolveViteConfig = (isServer) => ({
       mode: "production",
       root,
-      plugins: [_pluginreact2.default.call(void 0, )],
+      plugins: [_pluginreact2.default.call(void 0, ), _chunkGOHTTJGVjs.configPlugin.call(void 0, config)],
+      ssr: {
+        noExternal: ["react-router-dom"]
+      },
       build: {
         ssr: isServer,
         outDir: isServer ? ".temp" : "build",
         rollupOptions: {
-          input: isServer ? _chunkWZAQ3NAPjs.SERVER_ENTRY_PATH : _chunkWZAQ3NAPjs.CLIENT_ENTRY_PATH,
+          input: isServer ? _chunkGOHTTJGVjs.SERVER_ENTRY_PATH : _chunkGOHTTJGVjs.CLIENT_ENTRY_PATH,
           output: {
             format: isServer ? "cjs" : "esm"
           }
@@ -146,9 +152,9 @@ var bundle = async (root) => {
     console.log(e);
   }
 };
-var build = async (root = process.cwd()) => {
-  const [clientBundle] = await bundle(root);
-  const serverEntryPath = path.join(_chunkWZAQ3NAPjs.PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
+var build = async (root = process.cwd(), config) => {
+  const [clientBundle] = await bundle(root, config);
+  const serverEntryPath = path.join(_chunkGOHTTJGVjs.PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
   const { render } = await Promise.resolve().then(() => require(serverEntryPath));
   await renderPage(render, root, clientBundle);
 };
@@ -157,7 +163,8 @@ var build = async (root = process.cwd()) => {
 var version = require_package().version;
 var cli = _cac.cac.call(void 0, "island").version(version).help();
 cli.command("build [root]", "build for production").action(async (root) => {
-  await build(root);
+  const config = await _chunkCJ6ITQK3js.resolveConfig.call(void 0, root, "build", "production");
+  await build(root, config);
 });
 cli.command("[root]", "start dev server").alias("dev").action(async (root) => {
   const createServer = async () => {

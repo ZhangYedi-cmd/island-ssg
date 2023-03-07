@@ -1,11 +1,13 @@
 import {
   CLIENT_ENTRY_PATH,
   PACKAGE_ROOT,
-  SERVER_ENTRY_PATH
-} from "./chunk-5T7M4LUT.mjs";
+  SERVER_ENTRY_PATH,
+  configPlugin
+} from "./chunk-IVVS4CUQ.mjs";
 import {
-  __commonJS
-} from "./chunk-75VXZAIQ.mjs";
+  __commonJS,
+  resolveConfig
+} from "./chunk-ME5MTLVC.mjs";
 
 // package.json
 var require_package = __commonJS({
@@ -68,6 +70,7 @@ var require_package = __commonJS({
         prettier: "^2.8.4",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
+        "react-router-dom": "6.4.3",
         vite: "^3.2.1"
       }
     };
@@ -115,12 +118,15 @@ var renderPage = async (render, root, clientBundle) => {
 // src/node/build.ts
 import pluginReact from "@vitejs/plugin-react";
 import ora from "ora";
-var bundle = async (root) => {
+var bundle = async (root, config) => {
   try {
     const resolveViteConfig = (isServer) => ({
       mode: "production",
       root,
-      plugins: [pluginReact()],
+      plugins: [pluginReact(), configPlugin(config)],
+      ssr: {
+        noExternal: ["react-router-dom"]
+      },
       build: {
         ssr: isServer,
         outDir: isServer ? ".temp" : "build",
@@ -146,8 +152,8 @@ var bundle = async (root) => {
     console.log(e);
   }
 };
-var build = async (root = process.cwd()) => {
-  const [clientBundle] = await bundle(root);
+var build = async (root = process.cwd(), config) => {
+  const [clientBundle] = await bundle(root, config);
   const serverEntryPath = path.join(PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
   const { render } = await import(serverEntryPath);
   await renderPage(render, root, clientBundle);
@@ -157,7 +163,8 @@ var build = async (root = process.cwd()) => {
 var version = require_package().version;
 var cli = cac("island").version(version).help();
 cli.command("build [root]", "build for production").action(async (root) => {
-  await build(root);
+  const config = await resolveConfig(root, "build", "production");
+  await build(root, config);
 });
 cli.command("[root]", "start dev server").alias("dev").action(async (root) => {
   const createServer = async () => {

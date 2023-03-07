@@ -4,20 +4,25 @@
  *  2. 将CSR打包产物渲染 RenderToString
  *  3. 返回HTML
  */
-import { build as viteBuild } from 'vite'
-import { CLIENT_ENTRY_PATH, PACKAGE_ROOT, SERVER_ENTRY_PATH } from './constants'
+import {build as viteBuild} from 'vite'
+import {CLIENT_ENTRY_PATH, PACKAGE_ROOT, SERVER_ENTRY_PATH} from './constants'
 import * as path from 'path'
-import { renderPage } from './renderPage'
+import {renderPage} from './renderPage'
 import pluginReact from '@vitejs/plugin-react'
 import ora from 'ora'
-import { RollupOutput } from 'rollup'
+import {RollupOutput} from 'rollup'
+import {SiteConfig} from "../shared/types";
+import {configPlugin} from "./plugin-island/config";
 
-export const bundle = async (root: string) => {
+export const bundle = async (root: string, config: SiteConfig) => {
   try {
     const resolveViteConfig = (isServer: boolean) => ({
       mode: 'production',
       root,
-      plugins: [pluginReact()],
+      plugins: [pluginReact(), configPlugin(config)],
+      ssr: {
+        noExternal: ['react-router-dom']
+      },
       build: {
         ssr: isServer,
         outDir: isServer ? '.temp' : 'build',
@@ -54,11 +59,11 @@ export const bundle = async (root: string) => {
  * CSR：将我们写的JS逻辑代码注入到SSR生成的HTML-DOM中
  * 同构架构：一套代码 放到两个环境中执行
  */
-export const build = async (root: string = process.cwd()) => {
-  const [clientBundle] = await bundle(root)
+export const build = async (root: string = process.cwd(), config: SiteConfig) => {
+  const [clientBundle] = await bundle(root, config)
 
   // 拿到打包后SSR生成DOM脚本
   const serverEntryPath = path.join(PACKAGE_ROOT, root, '.temp', 'ssr-entry.js')
-  const { render } = await import(serverEntryPath)
+  const {render} = await import(serverEntryPath)
   await renderPage(render, root, clientBundle)
 }

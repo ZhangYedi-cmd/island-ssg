@@ -1,11 +1,12 @@
 import {
   CLIENT_ENTRY_PATH,
-  DEFAULT_HTML_PATH
-} from "./chunk-5T7M4LUT.mjs";
+  DEFAULT_HTML_PATH,
+  PACKAGE_ROOT,
+  configPlugin
+} from "./chunk-IVVS4CUQ.mjs";
 import {
   resolveConfig
-} from "./chunk-R5WH3C3Q.mjs";
-import "./chunk-75VXZAIQ.mjs";
+} from "./chunk-ME5MTLVC.mjs";
 
 // src/node/dev.ts
 import { createServer as createViteDevServer } from "vite";
@@ -57,45 +58,11 @@ function islandHtmlPlugin() {
 
 // src/node/dev.ts
 import pluginReact from "@vitejs/plugin-react";
-
-// src/node/plugin-island/config.ts
-import { relative } from "path";
-var SITE_DATA_ID = "island:site-data";
-var configPlugin = (config, restartDevServer) => {
-  return {
-    name: "island:site-data",
-    // import * from ${resolveId}
-    resolveId(id) {
-      if (id === SITE_DATA_ID) {
-        return "\0" + SITE_DATA_ID;
-      }
-    },
-    // 加载时 返回编译后的配置
-    load(id) {
-      if (id === "\0" + SITE_DATA_ID) {
-        return `export default ${JSON.stringify(config)}`;
-      }
-    },
-    // 配置文件更新后 自动重启服务
-    async handleHotUpdate(ctx) {
-      const customFiles = [config.configPath, ...config.configDeps];
-      const include = (id) => customFiles.some((filePath) => filePath.includes(id));
-      if (include(ctx.file)) {
-        console.log(
-          `
-${relative(config.root, ctx.file)} changed, restarting server...`
-        );
-        await restartDevServer();
-      }
-    }
-  };
-};
-
-// src/node/dev.ts
 async function createDevServer(root = process.cwd(), restartDevServer) {
   const config = await resolveConfig(root, "serve", "development");
   return createViteDevServer({
-    root,
+    // vite 本身就是一个静态资源代理  在访问深路由之前就已经返回文件内容 我们让devServer 代理docs目录就可以解决这个问题
+    root: PACKAGE_ROOT,
     plugins: [
       islandHtmlPlugin(),
       pluginReact(),
