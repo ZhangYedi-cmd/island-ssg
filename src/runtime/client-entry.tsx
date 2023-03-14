@@ -1,7 +1,7 @@
-import {createRoot} from 'react-dom/client'
-import {App} from './App'
+import { createRoot } from 'react-dom/client'
+import { App } from './App'
 // import siteConfig from 'island:site-data'
-import {BrowserRouter} from 'react-router-dom'
+import { BrowserRouter } from 'react-router-dom'
 
 //CSR 入口
 function renderInBrowser() {
@@ -11,7 +11,7 @@ function renderInBrowser() {
   }
   createRoot(containerEl).render(
     <BrowserRouter>
-      <App/>
+      <App />
     </BrowserRouter>
   )
 }

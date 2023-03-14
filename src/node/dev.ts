@@ -1,9 +1,9 @@
-import {createServer as createViteDevServer} from 'vite'
-import {islandHtmlPlugin} from './plugin-island/indexHtml'
+import { createServer as createViteDevServer } from 'vite'
+import { islandHtmlPlugin } from './plugin-island/indexHtml'
 import pluginReact from '@vitejs/plugin-react'
-import {resolveConfig} from './config'
-import {configPlugin} from './plugin-island/config'
-import {PACKAGE_ROOT} from "./constants";
+import { resolveConfig } from './config'
+import { configPlugin } from './plugin-island/config'
+import { PACKAGE_ROOT } from './constants'
 
 export async function createDevServer(root = process.cwd(), restartDevServer) {
   const config = await resolveConfig(root, 'serve', 'development')

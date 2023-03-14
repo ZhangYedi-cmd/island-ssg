@@ -1,15 +1,15 @@
-import {A} from "../../docs/guide/a";
-import {B} from "../../docs/b";
-import {useRoutes} from 'react-router-dom'
+import { A } from '../../docs/guide/a'
+import { B } from '../../docs/b'
+import { useRoutes } from 'react-router-dom'
 
 const routes = [
   {
     path: '/guide/a',
-    element: <A/>
+    element: <A />
   },
   {
     path: '/b',
-    element: <B/>
+    element: <B />
   }
 ]
 
