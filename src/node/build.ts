@@ -4,12 +4,12 @@
  *  2. 将CSR打包产物渲染 RenderToString
  *  3. 返回HTML
  */
-import {build as viteBuild} from 'vite'
+import ora from 'ora'
+import {build as viteBuild, ssrLoadModule} from 'vite'
 import {CLIENT_ENTRY_PATH, PACKAGE_ROOT, SERVER_ENTRY_PATH} from './constants'
 import * as path from 'path'
 import {renderPage} from './renderPage'
 import pluginReact from '@vitejs/plugin-react'
-import ora from 'ora'
 import {RollupOutput} from 'rollup'
 import {SiteConfig} from "../shared/types";
 import {configPlugin} from "./plugin-island/config";
@@ -21,6 +21,7 @@ export const bundle = async (root: string, config: SiteConfig) => {
       root,
       plugins: [pluginReact(), configPlugin(config)],
       ssr: {
+        // 解决依赖兼容性问题,方式cjs产物require 这个包，因为它只提供了esm格式的产物！
         noExternal: ['react-router-dom']
       },
       build: {
@@ -61,9 +62,7 @@ export const bundle = async (root: string, config: SiteConfig) => {
  */
 export const build = async (root: string = process.cwd(), config: SiteConfig) => {
   const [clientBundle] = await bundle(root, config)
-
   // 拿到打包后SSR生成DOM脚本
   const serverEntryPath = path.join(PACKAGE_ROOT, root, '.temp', 'ssr-entry.js')
-  const {render} = await import(serverEntryPath)
   await renderPage(render, root, clientBundle)
 }

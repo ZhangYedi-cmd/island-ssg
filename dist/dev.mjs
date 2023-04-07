@@ -3,10 +3,10 @@ import {
   DEFAULT_HTML_PATH,
   PACKAGE_ROOT,
   configPlugin
-} from "./chunk-IVVS4CUQ.mjs";
+} from "./chunk-W3RKSLQ6.mjs";
 import {
   resolveConfig
-} from "./chunk-ME5MTLVC.mjs";
+} from "./chunk-LJRJ3AA2.mjs";
 
 // src/node/dev.ts
 import { createServer as createViteDevServer } from "vite";

@@ -21,6 +21,7 @@ specifiers:
   husky: ^8.0.3
   lint-staged: ^13.1.2
   ora: ^6.1.2
+  pnpm: ^7.31.0
   prettier: ^2.8.4
   react: ^18.2.0
   react-dom: ^18.2.0
@@ -38,6 +39,7 @@ dependencies:
   eslint-plugin-prettier: registry.npmmirror.com/eslint-plugin-prettier/4.2.1_u5wnrdwibbfomslmnramz52buy
   fs-extra: registry.npmmirror.com/fs-extra/10.1.0
   ora: registry.npmmirror.com/ora/6.1.2
+  pnpm: registry.npmmirror.com/pnpm/7.31.0
   prettier: registry.npmmirror.com/prettier/2.8.4
   react: registry.npmmirror.com/react/18.2.0
   react-dom: registry.npmmirror.com/react-dom/18.2.0_react@18.2.0
@@ -4351,6 +4353,14 @@ packages:
     version: 4.0.5
     engines: {node: '>= 6'}
     dev: true
+
+  registry.npmmirror.com/pnpm/7.31.0:
+    resolution: {integrity: sha512-IEyx+XVK/NFe+6LUwORp2a50c55gD1twY3/Jjfx4O0qKdryw2wE6pyJtu38eAr+Elzd9TKTKOl+E3FNknK7zRQ==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/pnpm/-/pnpm-7.31.0.tgz}
+    name: pnpm
+    version: 7.31.0
+    engines: {node: '>=14.6'}
+    hasBin: true
+    dev: false
 
   registry.npmmirror.com/postcss-load-config/3.1.4:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/postcss-load-config/-/postcss-load-config-3.1.4.tgz}

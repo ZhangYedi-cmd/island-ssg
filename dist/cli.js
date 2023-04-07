@@ -67,6 +67,7 @@ var require_package = _chunkCJ6ITQK3js.__commonJS.call(void 0, {
         "eslint-plugin-prettier": "^4.2.1",
         "fs-extra": "^10.1.0",
         ora: "^6.1.2",
+        pnpm: "^7.31.0",
         prettier: "^2.8.4",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
@@ -81,14 +82,15 @@ var require_package = _chunkCJ6ITQK3js.__commonJS.call(void 0, {
 var _cac = require('cac');
 
 // src/node/build.ts
+var _ora = require('ora'); var _ora2 = _interopRequireDefault(_ora);
 var _vite = require('vite');
 var _path = require('path'); var path = _interopRequireWildcard(_path);
 
 // src/node/renderPage.ts
 
 var _fsextra = require('fs-extra'); var _fsextra2 = _interopRequireDefault(_fsextra);
-var renderPage = async (render, root, clientBundle) => {
-  const html = render();
+var renderPage = async (render2, root, clientBundle) => {
+  const html = render2();
   const clientChunk = clientBundle.output.find(
     (chunk) => chunk.type === "chunk" && chunk.isEntry
   );
@@ -117,7 +119,6 @@ var renderPage = async (render, root, clientBundle) => {
 
 // src/node/build.ts
 var _pluginreact = require('@vitejs/plugin-react'); var _pluginreact2 = _interopRequireDefault(_pluginreact);
-var _ora = require('ora'); var _ora2 = _interopRequireDefault(_ora);
 var bundle = async (root, config) => {
   try {
     const resolveViteConfig = (isServer) => ({
@@ -125,6 +126,7 @@ var bundle = async (root, config) => {
       root,
       plugins: [_pluginreact2.default.call(void 0, ), _chunkGOHTTJGVjs.configPlugin.call(void 0, config)],
       ssr: {
+        // 解决依赖兼容性问题,方式cjs产物require 这个包，因为它只提供了esm格式的产物！
         noExternal: ["react-router-dom"]
       },
       build: {
@@ -155,7 +157,6 @@ var bundle = async (root, config) => {
 var build = async (root = process.cwd(), config) => {
   const [clientBundle] = await bundle(root, config);
   const serverEntryPath = path.join(_chunkGOHTTJGVjs.PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
-  const { render } = await Promise.resolve().then(() => require(serverEntryPath));
   await renderPage(render, root, clientBundle);
 };
 
@@ -168,7 +169,7 @@ cli.command("build [root]", "build for production").action(async (root) => {
 });
 cli.command("[root]", "start dev server").alias("dev").action(async (root) => {
   const createServer = async () => {
-    const { createDevServer } = await Promise.resolve().then(() => require("./dev.js"));
+    const { createDevServer } = await Promise.resolve().then(() => _interopRequireWildcard(require("./dev.js")));
     const server = await createDevServer(root, async () => {
       await server.close();
       await createServer();
