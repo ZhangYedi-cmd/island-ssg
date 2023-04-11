@@ -3,7 +3,8 @@
 
 
 
-var _chunkGOHTTJGVjs = require('./chunk-GOHTTJGV.js');
+
+var _chunkQY5SIVNBjs = require('./chunk-QY5SIVNB.js');
 
 
 var _chunkCJ6ITQK3js = require('./chunk-CJ6ITQK3.js');
@@ -26,7 +27,7 @@ function islandHtmlPlugin() {
             tag: "script",
             attrs: {
               type: "module",
-              src: `/@fs/${_chunkGOHTTJGVjs.CLIENT_ENTRY_PATH}`
+              src: `/@fs/${_chunkQY5SIVNBjs.CLIENT_ENTRY_PATH}`
             },
             injectTo: "body"
           }
@@ -37,7 +38,7 @@ function islandHtmlPlugin() {
     configureServer(server) {
       return () => {
         server.middlewares.use(async (req, res, next) => {
-          let html = await _promises.readFile.call(void 0, _chunkGOHTTJGVjs.DEFAULT_HTML_PATH, "utf-8");
+          let html = await _promises.readFile.call(void 0, _chunkQY5SIVNBjs.DEFAULT_HTML_PATH, "utf-8");
           try {
             html = await server.transformIndexHtml(
               req.url,
@@ -62,11 +63,14 @@ async function createDevServer(root = process.cwd(), restartDevServer) {
   const config = await _chunkCJ6ITQK3js.resolveConfig.call(void 0, root, "serve", "development");
   return _vite.createServer.call(void 0, {
     // vite 本身就是一个静态资源代理  在访问深路由之前就已经返回文件内容 我们让devServer 代理docs目录就可以解决这个问题
-    root: _chunkGOHTTJGVjs.PACKAGE_ROOT,
+    root: _chunkQY5SIVNBjs.PACKAGE_ROOT,
     plugins: [
       islandHtmlPlugin(),
       _pluginreact2.default.call(void 0, ),
-      _chunkGOHTTJGVjs.configPlugin.call(void 0, config, restartDevServer)
+      _chunkQY5SIVNBjs.configPlugin.call(void 0, config, restartDevServer),
+      _chunkQY5SIVNBjs.pluginRoutes.call(void 0, {
+        root: config.root
+      })
     ]
   });
 }

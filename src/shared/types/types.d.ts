@@ -4,8 +4,7 @@ declare module 'island:site-data' {
   export default siteData
 }
 
-// declare module 'fs' {
-//   import * as fs from "fs-extra"
-//   const fs:fs
-//   export default fs
-// }
+declare module 'island:routes' {
+  import type { Route } from 'node/plugin-routes';
+  export const routes: Route[];
+}

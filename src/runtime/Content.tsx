@@ -1,19 +1,6 @@
-import {A} from "../../docs/guide/a";
-import {B} from "../../docs/b";
 import {useRoutes} from 'react-router-dom'
-
-const routes = [
-  {
-    path: '/guide/a',
-    element: <A/>
-  },
-  {
-    path: '/b',
-    element: <B/>
-  }
-]
+import {routes} from 'island:routes';
 
 export const Content = () => {
-  const routeElement = useRoutes(routes)
-  return routeElement
+    return useRoutes(routes)
 }

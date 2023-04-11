@@ -1,9 +1,8 @@
 import {Content} from "@runtime";
-
 export function Layout() {
   return (
     <div>
-      <h1>Content</h1>
+      <h1>This is Content</h1>
      <Content></Content>
     </div>
   )

@@ -2,11 +2,12 @@ import {
   CLIENT_ENTRY_PATH,
   DEFAULT_HTML_PATH,
   PACKAGE_ROOT,
-  configPlugin
-} from "./chunk-W3RKSLQ6.mjs";
+  configPlugin,
+  pluginRoutes
+} from "./chunk-4T4CNRLB.mjs";
 import {
   resolveConfig
-} from "./chunk-LJRJ3AA2.mjs";
+} from "./chunk-ME5MTLVC.mjs";
 
 // src/node/dev.ts
 import { createServer as createViteDevServer } from "vite";
@@ -66,7 +67,10 @@ async function createDevServer(root = process.cwd(), restartDevServer) {
     plugins: [
       islandHtmlPlugin(),
       pluginReact(),
-      configPlugin(config, restartDevServer)
+      configPlugin(config, restartDevServer),
+      pluginRoutes({
+        root: config.root
+      })
     ]
   });
 }

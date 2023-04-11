@@ -1,5 +1,8 @@
-export const A = () => {
+const A = () => {
   return (
-    <div>hello b!</div>
+    <div>hello A!</div>
   )
 }
+
+
+export default A

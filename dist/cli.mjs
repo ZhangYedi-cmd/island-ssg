@@ -2,77 +2,83 @@ import {
   CLIENT_ENTRY_PATH,
   PACKAGE_ROOT,
   SERVER_ENTRY_PATH,
-  configPlugin
-} from "./chunk-W3RKSLQ6.mjs";
+  configPlugin,
+  pluginRoutes
+} from "./chunk-4T4CNRLB.mjs";
 import {
   __commonJS,
   resolveConfig
-} from "./chunk-LJRJ3AA2.mjs";
+} from "./chunk-ME5MTLVC.mjs";
 
 // package.json
 var require_package = __commonJS({
   "package.json"(exports, module) {
     module.exports = {
-      name: "@yedizhang/island-ssg",
-      version: "1.0.3",
+      name: "island-dev",
+      version: "1.0.0",
       description: "",
-      main: "./dist/cli.mjs",
-      bin: {
-        island: "bin/island.mjs"
-      },
+      main: "index.js",
       scripts: {
-        start: "tsup --watch",
+        dev: "tsup --watch",
         build: "tsup",
+        preview: "cd build && serve .",
         lint: "eslint --ext .ts,.tsx,.js,.jsx ./",
         "lint:fix": "eslint --fix --ext .ts,.tsx,.js,.jsx --quiet ./",
-        prepare: "husky install"
+        prepare: "husky install",
+        "test:unit": "vitest run",
+        "test:e2e": "playwright test",
+        "prepare:e2e": "tsx ./scripts/prepare-e2e.cts"
       },
-      "lint-staged": {
-        "**/*.{js,jsx,tsx,ts}": [
-          "npm run lint",
-          "git add ."
-        ],
-        "**/*.{scss}": [
-          "npm run lint:style",
-          "git add ."
-        ]
+      bin: {
+        island: "bin/island.js"
       },
       keywords: [],
       author: "",
       license: "ISC",
+      "lint-staged": {
+        "**/*.{js,jsx,tsx,ts}": [
+          "npm run lint"
+        ]
+      },
       devDependencies: {
-        "@commitlint/cli": "^17.4.4",
-        "@commitlint/config-conventional": "^17.4.4",
+        "@commitlint/cli": "^17.2.0",
+        "@commitlint/config-conventional": "^17.2.0",
+        "@playwright/test": "1.26.1",
         "@types/fs-extra": "^9.0.13",
         "@types/node": "^18.11.7",
         "@types/react": "^18.0.24",
         "@types/react-dom": "^18.0.8",
-        "@typescript-eslint/eslint-plugin": "^5.52.0",
-        "@typescript-eslint/parser": "^5.52.0",
-        commitlint: "^17.4.4",
-        eslint: "^8.34.0",
-        "eslint-plugin-react": "^7.32.2",
+        "@typescript-eslint/eslint-plugin": "^5.43.0",
+        "@typescript-eslint/parser": "^5.43.0",
+        "@vitest/ui": "^0.25.2",
+        commitlint: "^17.2.0",
+        eslint: "^8.27.0",
+        "eslint-config-prettier": "^8.5.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-plugin-react": "^7.31.10",
         "eslint-plugin-react-hooks": "^4.6.0",
-        husky: "^8.0.3",
-        "lint-staged": "^13.1.2",
+        execa: "5.1.1",
+        husky: "^8.0.2",
+        "lint-staged": "^13.0.3",
+        prettier: "^2.7.1",
         rollup: "^3.2.3",
         serve: "^14.0.1",
         tsup: "^6.5.0",
-        typescript: "^4.8.4"
+        tsx: "^3.12.1",
+        typescript: "^4.8.4",
+        vitest: "^0.25.2"
       },
       dependencies: {
+        "@loadable/component": "^5.15.2",
         "@vitejs/plugin-react": "^2.2.0",
         cac: "^6.7.14",
-        "eslint-config-prettier": "^8.6.0",
-        "eslint-plugin-prettier": "^4.2.1",
+        "fast-glob": "^3.2.12",
         "fs-extra": "^10.1.0",
         ora: "^6.1.2",
-        pnpm: "^7.31.0",
-        prettier: "^2.8.4",
         react: "^18.2.0",
         "react-dom": "^18.2.0",
         "react-router-dom": "6.4.3",
-        vite: "^3.2.1"
+        vite: "3.1.4"
       }
     };
   }
@@ -89,8 +95,8 @@ import * as path from "path";
 // src/node/renderPage.ts
 import { join } from "path";
 import fs from "fs-extra";
-var renderPage = async (render2, root, clientBundle) => {
-  const html = render2();
+var renderPage = async (render, root, clientBundle) => {
+  const html = render();
   const clientChunk = clientBundle.output.find(
     (chunk) => chunk.type === "chunk" && chunk.isEntry
   );
@@ -124,7 +130,13 @@ var bundle = async (root, config) => {
     const resolveViteConfig = (isServer) => ({
       mode: "production",
       root,
-      plugins: [pluginReact(), configPlugin(config)],
+      plugins: [
+        pluginReact(),
+        configPlugin(config),
+        pluginRoutes({
+          root: config.root
+        })
+      ],
       ssr: {
         // 解决依赖兼容性问题,方式cjs产物require 这个包，因为它只提供了esm格式的产物！
         noExternal: ["react-router-dom"]
@@ -157,6 +169,7 @@ var bundle = async (root, config) => {
 var build = async (root = process.cwd(), config) => {
   const [clientBundle] = await bundle(root, config);
   const serverEntryPath = path.join(PACKAGE_ROOT, root, ".temp", "ssr-entry.js");
+  const { render } = await import(serverEntryPath);
   await renderPage(render, root, clientBundle);
 };
 
