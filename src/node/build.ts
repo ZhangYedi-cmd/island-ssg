@@ -14,6 +14,7 @@ import { RollupOutput } from 'rollup'
 import { SiteConfig } from '../shared/types'
 import { configPlugin } from './plugin-island/config'
 import { pluginRoutes } from './plugin-routes'
+import { createPluginMdx } from './plugin-mdx'
 
 export const bundle = async (root: string, config: SiteConfig) => {
   try {
@@ -25,7 +26,8 @@ export const bundle = async (root: string, config: SiteConfig) => {
         configPlugin(config),
         pluginRoutes({
           root: config.root
-        })
+        }),
+        createPluginMdx()
       ],
       ssr: {
         // 解决依赖兼容性问题,方式cjs产物require 这个包，因为它只提供了esm格式的产物！

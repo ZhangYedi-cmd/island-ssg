@@ -20,7 +20,8 @@ module.exports = {
     quotes: ['error', 'single'],
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/no-var-requires': 'off',
-    'react/react-in-jsx-scope': 'off'
+    'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/ban-ts-comment': 'off'
   },
   settings: {
     react: {

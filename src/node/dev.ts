@@ -5,6 +5,7 @@ import { resolveConfig } from './config'
 import { configPlugin } from './plugin-island/config'
 import { PACKAGE_ROOT } from './constants'
 import { pluginRoutes } from './plugin-routes'
+import { createPluginMdx } from './plugin-mdx'
 
 export async function createDevServer(root = process.cwd(), restartDevServer) {
   const config = await resolveConfig(root, 'serve', 'development')
@@ -17,7 +18,8 @@ export async function createDevServer(root = process.cwd(), restartDevServer) {
       configPlugin(config, restartDevServer),
       pluginRoutes({
         root: config.root
-      })
+      }),
+      createPluginMdx()
     ]
   })
 }
