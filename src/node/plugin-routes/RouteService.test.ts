@@ -3,16 +3,16 @@ import { describe, expect, test } from 'vitest';
 import path from 'path';
 
 describe('RouteService', async () => {
-    const testDir = path.join(__dirname, 'fixtures');
-    const routeService = new RouteService(testDir);
-    await routeService.init();
+  const testDir = path.join(__dirname, 'fixtures');
+  const routeService = new RouteService(testDir);
+  await routeService.init();
 
-    test('conventional route by file structure', async () => {
-        const routeMeta = routeService.getRouteMeta().map((item) => ({
-            ...item,
-            absolutePath: item.absolutePath.replace(testDir, 'TEST_DIR')
-        }));
-        expect(routeMeta).toMatchInlineSnapshot(`
+  test('conventional route by file structure', async () => {
+    const routeMeta = routeService.getRouteMeta().map((item) => ({
+      ...item,
+      absolutePath: item.absolutePath.replace(testDir, 'TEST_DIR')
+    }));
+    expect(routeMeta).toMatchInlineSnapshot(`
       [
         {
           "absolutePath": "TEST_DIR/a.mdx",
@@ -24,11 +24,11 @@ describe('RouteService', async () => {
         },
       ]
     `);
-    });
+  });
 
-    test('generate routes code', async () => {
-        expect(routeService.generateRoutesCode().replaceAll(testDir, 'TEST_DIR'))
-            .toMatchInlineSnapshot(`
+  test('generate routes code', async () => {
+    expect(routeService.generateRoutesCode().replaceAll(testDir, 'TEST_DIR'))
+      .toMatchInlineSnapshot(`
       "
       import React from 'react';
       import loadable from '@loadable/component';
@@ -40,5 +40,5 @@ describe('RouteService', async () => {
       ];
       "
     `);
-    });
+  });
 });

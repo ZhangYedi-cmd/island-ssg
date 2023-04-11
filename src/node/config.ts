@@ -36,11 +36,7 @@ const resolveUserConfig = async (
   // 获取配置文件路径
   const configPath = getUserConfigPath(root)
   // 解析配置文件 导入vite已有的API
-  const result = await loadConfigFromFile(
-    { command, mode },
-    configPath,
-    root
-  )
+  const result = await loadConfigFromFile({ command, mode }, configPath, root)
   if (result) {
     const {
       config: rawConfig = {} as RawConfig,

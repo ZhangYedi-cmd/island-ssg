@@ -15,7 +15,7 @@
     "prepare:e2e": "tsx ./scripts/prepare-e2e.cts"
   },
   "bin": {
-    "island": "bin/island.js"
+    "land": "bin/island.js"
   },
   "keywords": [],
   "author": "",

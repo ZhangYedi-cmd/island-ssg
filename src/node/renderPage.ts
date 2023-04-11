@@ -1,6 +1,6 @@
-import {join} from 'path'
+import { join } from 'path'
 import fs from 'fs-extra'
-import {RollupOutput} from 'rollup'
+import { RollupOutput } from 'rollup'
 
 /**
  * 渲染最终的HTML

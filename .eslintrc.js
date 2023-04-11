@@ -1,8 +1,4 @@
 module.exports = {
-  env: {
-    browser: true,
-    es2021: true
-  },
   extends: [
     'eslint:recommended',
     'plugin:react/recommended',
@@ -18,11 +14,17 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module'
   },
-  plugins: ['react', '@typescript-eslint', 'prettier'],
+  plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'react/react-in-jsx-scope': 'off',
-    '@typescript-eslint/no-var-requires': 0,
-    '@typescript-eslint/ban-ts-comment': 0
+    quotes: ['error', 'single'],
+    semi: ['error', 'always'],
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    'react/react-in-jsx-scope': 'off'
+  },
+  settings: {
+    react: {
+      version: 'detect'
+    }
   }
 };

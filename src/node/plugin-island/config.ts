@@ -1,8 +1,8 @@
 import { SiteConfig } from '../../shared/types'
 import { Plugin } from 'vite'
 import { relative } from 'path'
-import {join} from 'path'
-import {PACKAGE_ROOT} from "../constants";
+import { join } from 'path'
+import { PACKAGE_ROOT } from '../constants';
 // 虚拟模块id
 const SITE_DATA_ID = 'island:site-data'
 
@@ -28,11 +28,11 @@ export const configPlugin = (
         return `export default ${JSON.stringify(config)}`
       }
     },
-    config(){
+    config() {
       return {
         resolve: {
           alias: {
-            "@runtime": join(PACKAGE_ROOT,'src','runtime', 'index.ts')
+            '@runtime': join(PACKAGE_ROOT, 'src', 'runtime', 'index.ts')
           }
         }
       }
