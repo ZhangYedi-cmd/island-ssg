@@ -11,9 +11,9 @@ import * as path from 'path'
 import { renderPage } from './renderPage'
 import pluginReact from '@vitejs/plugin-react'
 import { RollupOutput } from 'rollup'
-import { SiteConfig } from '../shared/types';
-import { configPlugin } from './plugin-island/config';
-import { pluginRoutes } from './plugin-routes';
+import { SiteConfig } from '../shared/types'
+import { configPlugin } from './plugin-island/config'
+import { pluginRoutes } from './plugin-routes'
 
 export const bundle = async (root: string, config: SiteConfig) => {
   try {

@@ -3,8 +3,8 @@ import { islandHtmlPlugin } from './plugin-island/indexHtml'
 import pluginReact from '@vitejs/plugin-react'
 import { resolveConfig } from './config'
 import { configPlugin } from './plugin-island/config'
-import { PACKAGE_ROOT } from './constants';
-import { pluginRoutes } from './plugin-routes';
+import { PACKAGE_ROOT } from './constants'
+import { pluginRoutes } from './plugin-routes'
 
 export async function createDevServer(root = process.cwd(), restartDevServer) {
   const config = await resolveConfig(root, 'serve', 'development')

@@ -9,3 +9,5 @@ docs
 e2e
 scripts
 .temp
+tsup.config.js
+.eslintrc.js

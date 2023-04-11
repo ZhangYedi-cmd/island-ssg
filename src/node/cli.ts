@@ -1,7 +1,7 @@
 import { cac } from 'cac'
 import { createDevServer } from './dev.js'
 import { build } from './build'
-import { resolveConfig } from './config';
+import { resolveConfig } from './config'
 
 const version = require('../../package.json').version
 const cli = cac('island').version(version).help()

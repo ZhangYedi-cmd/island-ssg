@@ -1,6 +1,6 @@
-import fastGlob from 'fast-glob';
-import { normalizePath } from 'vite';
-import path from 'path';
+import fastGlob from 'fast-glob'
+import { normalizePath } from 'vite'
+import path from 'path'
 
 interface RouteMeta {
   routePath: string
@@ -8,11 +8,11 @@ interface RouteMeta {
 }
 
 export class RouteService {
-  #scanDir: string;
-  #routeData: RouteMeta[] = [];
+  #scanDir: string
+  #routeData: RouteMeta[] = []
 
   constructor(scanDir: string) {
-    this.#scanDir = scanDir;
+    this.#scanDir = scanDir
   }
 
   async init() {
@@ -28,26 +28,26 @@ export class RouteService {
           '**/dist/**'
         ]
       })
-      .sort();
+      .sort()
     files.forEach((file) => {
-      const fileRelativePath = normalizePath(path.relative(this.#scanDir, file));
+      const fileRelativePath = normalizePath(path.relative(this.#scanDir, file))
       // 1. 路由路径
-      const routePath = this.normalizeRoutePath(fileRelativePath);
+      const routePath = this.normalizeRoutePath(fileRelativePath)
       // 2. 文件绝对路径
       this.#routeData.push({
         routePath,
         absolutePath: file
-      });
-    });
+      })
+    })
   }
 
   getRouteMeta(): RouteMeta[] {
-    return this.#routeData;
+    return this.#routeData
   }
 
   normalizeRoutePath(rawPath: string) {
-    const routePath = rawPath.replace(/\.(.*)?$/, '').replace(/index$/, '');
-    return routePath.startsWith('/') ? routePath : `/${routePath}`;
+    const routePath = rawPath.replace(/\.(.*)?$/, '').replace(/index$/, '')
+    return routePath.startsWith('/') ? routePath : `/${routePath}`
   }
 
   generateRoutesCode() {
@@ -56,16 +56,16 @@ import React from 'react';
 import loadable from '@loadable/component';
 ${this.#routeData
   .map((route, index) => {
-    return `const Route${index} = loadable(() => import('${route.absolutePath}'));`;
+    return `const Route${index} = loadable(() => import('${route.absolutePath}'));`
   })
   .join('\n')}
 export const routes = [
   ${this.#routeData
     .map((route, index) => {
-      return `{ path: '${route.routePath}', element: React.createElement(Route${index}) }`;
+      return `{ path: '${route.routePath}', element: React.createElement(Route${index}) }`
     })
     .join(',\n')}
 ];
-`;
+`
   }
 }

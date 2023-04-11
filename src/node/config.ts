@@ -1,7 +1,6 @@
 import { resolve } from 'path'
 import { loadConfigFromFile } from 'vite'
 import { SiteConfig, UserConfig } from '../shared/types'
-// @ts-ignore
 import fs from 'fs-extra'
 
 type RawConfig =

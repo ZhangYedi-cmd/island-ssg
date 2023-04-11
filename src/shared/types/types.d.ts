@@ -5,6 +5,6 @@ declare module 'island:site-data' {
 }
 
 declare module 'island:routes' {
-  import type { Route } from 'node/plugin-routes';
-  export const routes: Route[];
+  import type { Route } from 'node/plugin-routes'
+  export const routes: Route[]
 }

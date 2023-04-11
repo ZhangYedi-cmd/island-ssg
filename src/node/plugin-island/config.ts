@@ -2,7 +2,7 @@ import { SiteConfig } from '../../shared/types'
 import { Plugin } from 'vite'
 import { relative } from 'path'
 import { join } from 'path'
-import { PACKAGE_ROOT } from '../constants';
+import { PACKAGE_ROOT } from '../constants'
 // 虚拟模块id
 const SITE_DATA_ID = 'island:site-data'
 
