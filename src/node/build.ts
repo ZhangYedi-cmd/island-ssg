@@ -15,20 +15,14 @@ import { SiteConfig } from '../shared/types'
 import { configPlugin } from './plugin-island/config'
 import { pluginRoutes } from './plugin-routes'
 import { createPluginMdx } from './plugin-mdx'
+import {resolveIslandPlugins} from "./islandPlugins";
 
 export const bundle = async (root: string, config: SiteConfig) => {
   try {
-    const resolveViteConfig = (isServer: boolean) => ({
+    const resolveViteConfig = async (isServer: boolean) => ({
       mode: 'production',
       root,
-      plugins: [
-        pluginReact(),
-        configPlugin(config),
-        pluginRoutes({
-          root: config.root
-        }),
-        createPluginMdx()
-      ],
+      plugins: await resolveIslandPlugins(config),
       ssr: {
         // 解决依赖兼容性问题,方式cjs产物require 这个包，因为它只提供了esm格式的产物！
         noExternal: ['react-router-dom']
@@ -47,8 +41,8 @@ export const bundle = async (root: string, config: SiteConfig) => {
     const spinner = ora()
     spinner.start('Building client + server bundles...')
 
-    const clientBuild = () => viteBuild(resolveViteConfig(false))
-    const serverBuild = () => viteBuild(resolveViteConfig(true))
+    const clientBuild = async () => viteBuild(await resolveViteConfig(false))
+    const serverBuild = async () => viteBuild(await resolveViteConfig(true))
 
     // 优化build流程，服务端打包流程，客户端打包流程并发执行。
     const [clientBundle, serverBundle] = await Promise.all([

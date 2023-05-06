@@ -37,7 +37,6 @@ export function islandHtmlPlugin(): Plugin {
             )
             res.statusCode = 200
             res.setHeader('Content-Type', 'text/html')
-            // todo:图片防盗链  Http Request Header: Refer
             res.end(html)
           } catch (e) {
             return next(e)
