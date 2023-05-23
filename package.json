@@ -81,6 +81,7 @@
     "shiki": "^0.14.2",
     "unified": "^10.1.2",
     "unist-util-visit": "^4.1.2",
+    "unocss": "^0.52.1",
     "vite": "3.1.4"
   }
 }

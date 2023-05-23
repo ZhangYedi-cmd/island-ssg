@@ -16,6 +16,7 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'react-hooks', 'prettier'],
   rules: {
+    'react/no-unknown-property': 'off',
     'prettier/prettier': 'error',
     quotes: ['error', 'single'],
     '@typescript-eslint/no-non-null-assertion': 'off',

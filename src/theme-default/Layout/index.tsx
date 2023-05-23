@@ -1,9 +1,14 @@
-import { Content } from '@runtime'
+import {Content} from '@runtime'
+import 'uno.css'
+
 export function Layout() {
-  return (
-    <div>
-      <h1>This is Content</h1>
-      <Content></Content>
-    </div>
-  )
+    return (
+        <div>
+            <h1 p="1" m="4">
+                Common Content
+            </h1>
+            <h1>Doc Content</h1>
+            <Content/>
+        </div>
+    );
 }
