@@ -1,1 +1,1 @@
-console.log('hello island~!')
+console.log('hello island~!');
