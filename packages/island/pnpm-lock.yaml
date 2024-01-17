@@ -3,8 +3,10 @@ lockfileVersion: 5.3
 specifiers:
   '@commitlint/cli': ^18.4.3
   '@commitlint/config-conventional': ^18.4.3
+  '@types/node': ^20.11.1
   '@typescript-eslint/eslint-plugin': ^6.18.1
   '@typescript-eslint/parser': ^6.18.1
+  cac: ^6.7.14
   commitlint: ^17.4.4
   eslint: ^8.56.0
   eslint-config-prettier: ^9.1.0
@@ -19,36 +21,39 @@ specifiers:
   react-router-dom: 6.4.3
   tsup: ^6.5.0
   typescript: ^5.3.3
-  vite: ^5.0.11
+  vite: 3.1.4
 
 dependencies:
-  eslint-config-prettier: 9.1.0_eslint@8.56.0
-  eslint-plugin-prettier: 5.1.3_19d381ad0672fedae88b59827c20e557
-  prettier: 3.2.2
+  cac: 6.7.14
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router-dom: 6.4.3_react-dom@18.2.0+react@18.2.0
-  typescript: 5.3.3
-  vite: 5.0.11
+  vite: 3.1.4
 
 devDependencies:
   '@commitlint/cli': 18.4.3_typescript@5.3.3
   '@commitlint/config-conventional': 18.4.3
+  '@types/node': 20.11.1
   '@typescript-eslint/eslint-plugin': 6.18.1_bd4431c1ace7ad11d2659b56d56b16c7
   '@typescript-eslint/parser': 6.18.1_eslint@8.56.0+typescript@5.3.3
   commitlint: 17.4.4
   eslint: 8.56.0
+  eslint-config-prettier: 9.1.0_eslint@8.56.0
+  eslint-plugin-prettier: 5.1.3_19d381ad0672fedae88b59827c20e557
   eslint-plugin-react: 7.33.2_eslint@8.56.0
   eslint-plugin-react-hooks: 4.6.0_eslint@8.56.0
   husky: 8.0.3
   lint-staged: 15.2.0
+  prettier: 3.2.2
   tsup: 6.7.0_typescript@5.3.3
+  typescript: 5.3.3
 
 packages:
 
   /@aashutoshrathi/word-wrap/1.2.6:
     resolution: {integrity: sha1-vZFUrsmYP3ezoDTsqgFcLkIB9s8=, tarball: '@aashutoshrathi/word-wrap/download/@aashutoshrathi/word-wrap-1.2.6.tgz'}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /@babel/code-frame/7.23.5:
     resolution: {integrity: sha1-kAm2moxgIpNHatWY/1PkVi4VwkQ=, tarball: '@babel/code-frame/download/@babel/code-frame-7.23.5.tgz'}
@@ -404,11 +409,11 @@ packages:
       '@jridgewell/trace-mapping': 0.3.9
     dev: true
 
-  /@esbuild/aix-ppc64/0.19.11:
-    resolution: {integrity: sha1-Ks0gvm1PBFi8jHhBA0lf8k8TsdM=, tarball: '@esbuild/aix-ppc64/download/@esbuild/aix-ppc64-0.19.11.tgz'}
+  /@esbuild/android-arm/0.15.18:
+    resolution: {integrity: sha1-Jm1AuP3Ph5Yt+K8Ft2IZvHhrT4A=, tarball: '@esbuild/android-arm/download/@esbuild/android-arm-0.15.18.tgz'}
     engines: {node: '>=12'}
-    cpu: [ppc64]
-    os: [aix]
+    cpu: [arm]
+    os: [android]
     requiresBuild: true
     dev: false
     optional: true
@@ -422,15 +427,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/android-arm/0.19.11:
-    resolution: {integrity: sha1-9G9VQU4cNhSsaCspl3eSExI4Fkw=, tarball: '@esbuild/android-arm/download/@esbuild/android-arm-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [arm]
-    os: [android]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/android-arm64/0.17.19:
     resolution: {integrity: sha1-uvt1I0pdPRtpDnwpVqWZNF6Eov0=, tarball: '@esbuild/android-arm64/download/@esbuild/android-arm64-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -438,15 +434,6 @@ packages:
     os: [android]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/android-arm64/0.19.11:
-    resolution: {integrity: sha1-tF0AABc4XJBRpPA+FweKu5Nb4iA=, tarball: '@esbuild/android-arm64/download/@esbuild/android-arm64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [arm64]
-    os: [android]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/android-x64/0.17.19:
@@ -458,15 +445,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/android-x64/0.19.11:
-    resolution: {integrity: sha1-v8AekXQLggEe9QPEj1SJUIJJIrI=, tarball: '@esbuild/android-x64/download/@esbuild/android-x64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [android]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/darwin-arm64/0.17.19:
     resolution: {integrity: sha1-WEw0xZkbldTUjTMzALGk4v974nY=, tarball: '@esbuild/darwin-arm64/download/@esbuild/darwin-arm64-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -474,15 +452,6 @@ packages:
     os: [darwin]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/darwin-arm64/0.19.11:
-    resolution: {integrity: sha1-Uz+39aCMNxIdgsZhmCY9zBvtKb8=, tarball: '@esbuild/darwin-arm64/download/@esbuild/darwin-arm64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [arm64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/darwin-x64/0.17.19:
@@ -494,15 +463,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/darwin-x64/0.19.11:
-    resolution: {integrity: sha1-YvOBnv9+Tdxla3xoFaMc+aHn2Y4=, tarball: '@esbuild/darwin-x64/download/@esbuild/darwin-x64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [darwin]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/freebsd-arm64/0.17.19:
     resolution: {integrity: sha1-ys0XFmXdHVAPRcFn1QxrflOdX9I=, tarball: '@esbuild/freebsd-arm64/download/@esbuild/freebsd-arm64-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -510,15 +470,6 @@ packages:
     os: [freebsd]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/freebsd-arm64/0.19.11:
-    resolution: {integrity: sha1-1Hi0GVqjykQWAnLauF74uvQXW0o=, tarball: '@esbuild/freebsd-arm64/download/@esbuild/freebsd-arm64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [arm64]
-    os: [freebsd]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/freebsd-x64/0.17.19:
@@ -530,15 +481,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/freebsd-x64/0.19.11:
-    resolution: {integrity: sha1-e9zBkXQJF4JXymoaJ/4G55fsGKI=, tarball: '@esbuild/freebsd-x64/download/@esbuild/freebsd-x64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [freebsd]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/linux-arm/0.17.19:
     resolution: {integrity: sha1-GizTmcUAQBhKgFF0ptiQl9nRVZo=, tarball: '@esbuild/linux-arm/download/@esbuild/linux-arm-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -546,15 +488,6 @@ packages:
     os: [linux]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/linux-arm/0.19.11:
-    resolution: {integrity: sha1-zoIkbYc7VTTTTeHlwbMwJvNeYOM=, tarball: '@esbuild/linux-arm/download/@esbuild/linux-arm-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [arm]
-    os: [linux]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-arm64/0.17.19:
@@ -566,15 +499,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/linux-arm64/0.19.11:
-    resolution: {integrity: sha1-WK1P8RaF/Mc11/9Mp1mrGPz+RUU=, tarball: '@esbuild/linux-arm64/download/@esbuild/linux-arm64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [arm64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/linux-ia32/0.17.19:
     resolution: {integrity: sha1-4owlJmsDbOHKvKPDAVUiKEHcA1o=, tarball: '@esbuild/linux-ia32/download/@esbuild/linux-ia32-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -584,10 +508,10 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/linux-ia32/0.19.11:
-    resolution: {integrity: sha1-y64fMTIJr/x0uA9DkMTDXGq4P6Q=, tarball: '@esbuild/linux-ia32/download/@esbuild/linux-ia32-0.19.11.tgz'}
+  /@esbuild/linux-loong64/0.15.18:
+    resolution: {integrity: sha1-Eot27Lm+SLYM9c/BxjpPAGkaMjk=, tarball: '@esbuild/linux-loong64/download/@esbuild/linux-loong64-0.15.18.tgz'}
     engines: {node: '>=12'}
-    cpu: [ia32]
+    cpu: [loong64]
     os: [linux]
     requiresBuild: true
     dev: false
@@ -602,15 +526,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/linux-loong64/0.19.11:
-    resolution: {integrity: sha1-XzKurRw+yPTMzbftCLFmIk1OkSE=, tarball: '@esbuild/linux-loong64/download/@esbuild/linux-loong64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [loong64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/linux-mips64el/0.17.19:
     resolution: {integrity: sha1-9dKguAR+qaXZ9ZKheOoFQFOnAok=, tarball: '@esbuild/linux-mips64el/download/@esbuild/linux-mips64el-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -618,15 +533,6 @@ packages:
     os: [linux]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/linux-mips64el/0.19.11:
-    resolution: {integrity: sha1-OO7PHLuMNqYWJh3oWLPBDQNBmvk=, tarball: '@esbuild/linux-mips64el/download/@esbuild/linux-mips64el-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [mips64el]
-    os: [linux]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-ppc64/0.17.19:
@@ -638,15 +544,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/linux-ppc64/0.19.11:
-    resolution: {integrity: sha1-nFclqU5uwVuTGV5aavuCFiiv2RI=, tarball: '@esbuild/linux-ppc64/download/@esbuild/linux-ppc64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [ppc64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/linux-riscv64/0.17.19:
     resolution: {integrity: sha1-f0k3PfRjzZ9B3DT5siYtdxaIvwk=, tarball: '@esbuild/linux-riscv64/download/@esbuild/linux-riscv64-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -654,15 +551,6 @@ packages:
     os: [linux]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/linux-riscv64/0.19.11:
-    resolution: {integrity: sha1-LcRIbUdKKmK75YcFIqmmAOKsuRY=, tarball: '@esbuild/linux-riscv64/download/@esbuild/linux-riscv64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [riscv64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/linux-s390x/0.17.19:
@@ -674,15 +562,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/linux-s390x/0.19.11:
-    resolution: {integrity: sha1-SthWffSPfdTHHsWxdTtvN1YaZag=, tarball: '@esbuild/linux-s390x/download/@esbuild/linux-s390x-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [s390x]
-    os: [linux]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/linux-x64/0.17.19:
     resolution: {integrity: sha1-ig6XOLFjXwxTOJ5RWug4Jt7CKqQ=, tarball: '@esbuild/linux-x64/download/@esbuild/linux-x64-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -690,15 +569,6 @@ packages:
     os: [linux]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/linux-x64/0.19.11:
-    resolution: {integrity: sha1-tzkMTVGE8gPr592u3wc9+Cplh2Y=, tarball: '@esbuild/linux-x64/download/@esbuild/linux-x64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [linux]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/netbsd-x64/0.17.19:
@@ -710,15 +580,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/netbsd-x64/0.19.11:
-    resolution: {integrity: sha1-1jPAlJKhchN387zO2y2CG5EegT0=, tarball: '@esbuild/netbsd-x64/download/@esbuild/netbsd-x64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [netbsd]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/openbsd-x64/0.17.19:
     resolution: {integrity: sha1-ledaORQDyxApcoDVJNZs4EySBpE=, tarball: '@esbuild/openbsd-x64/download/@esbuild/openbsd-x64-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -726,15 +587,6 @@ packages:
     os: [openbsd]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/openbsd-x64/0.19.11:
-    resolution: {integrity: sha1-FziMduLwESW/gxpowDp//Mtl0aI=, tarball: '@esbuild/openbsd-x64/download/@esbuild/openbsd-x64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [openbsd]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/sunos-x64/0.17.19:
@@ -746,15 +598,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/sunos-x64/0.19.11:
-    resolution: {integrity: sha1-4yBjbwC7n0/fOoDlSMt0M3DUF2c=, tarball: '@esbuild/sunos-x64/download/@esbuild/sunos-x64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [sunos]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/win32-arm64/0.17.19:
     resolution: {integrity: sha1-mqncB0OZKIvc3Sg0Q+mutrlVK28=, tarball: '@esbuild/win32-arm64/download/@esbuild/win32-arm64-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -762,15 +605,6 @@ packages:
     os: [win32]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/win32-arm64/0.19.11:
-    resolution: {integrity: sha1-x3i0WklukLb8Nz4qK7By8UQf4O4=, tarball: '@esbuild/win32-arm64/download/@esbuild/win32-arm64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [arm64]
-    os: [win32]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@esbuild/win32-ia32/0.17.19:
@@ -782,15 +616,6 @@ packages:
     dev: true
     optional: true
 
-  /@esbuild/win32-ia32/0.19.11:
-    resolution: {integrity: sha1-SBpl/uLlzOdOxEgj5rCeztzFGUw=, tarball: '@esbuild/win32-ia32/download/@esbuild/win32-ia32-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [ia32]
-    os: [win32]
-    requiresBuild: true
-    dev: false
-    optional: true
-
   /@esbuild/win32-x64/0.17.19:
     resolution: {integrity: sha1-jPry/2A+mqu5EOnAVYwmzzJ0QGE=, tarball: '@esbuild/win32-x64/download/@esbuild/win32-x64-0.17.19.tgz'}
     engines: {node: '>=12'}
@@ -798,15 +623,6 @@ packages:
     os: [win32]
     requiresBuild: true
     dev: true
-    optional: true
-
-  /@esbuild/win32-x64/0.19.11:
-    resolution: {integrity: sha1-pdMAAIlguzlnfEa/FvU+xw2N7gQ=, tarball: '@esbuild/win32-x64/download/@esbuild/win32-x64-0.19.11.tgz'}
-    engines: {node: '>=12'}
-    cpu: [x64]
-    os: [win32]
-    requiresBuild: true
-    dev: false
     optional: true
 
   /@eslint-community/eslint-utils/4.4.0_eslint@8.56.0:
@@ -817,10 +633,12 @@ packages:
     dependencies:
       eslint: 8.56.0
       eslint-visitor-keys: 3.4.3
+    dev: true
 
   /@eslint-community/regexpp/4.10.0:
     resolution: {integrity: sha1-VI9t5VaFfIu3O77nDDXcgqLnTWM=, tarball: '@eslint-community/regexpp/download/@eslint-community/regexpp-4.10.0.tgz'}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
+    dev: true
 
   /@eslint/eslintrc/2.1.4:
     resolution: {integrity: sha1-OIomnw8lwbatwxe1osVXFIlMcK0=, tarball: '@eslint/eslintrc/download/@eslint/eslintrc-2.1.4.tgz'}
@@ -837,10 +655,12 @@ packages:
       strip-json-comments: 3.1.1
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@eslint/js/8.56.0:
     resolution: {integrity: sha1-7yA1D+xgWn9wNaAXZHMbLeDzeCs=, tarball: '@eslint/js/download/@eslint/js-8.56.0.tgz'}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
 
   /@humanwhocodes/config-array/0.11.14:
     resolution: {integrity: sha1-145IGgOfdWbsyWYLTqf+ax/sRCs=, tarball: '@humanwhocodes/config-array/download/@humanwhocodes/config-array-0.11.14.tgz'}
@@ -851,13 +671,16 @@ packages:
       minimatch: 3.1.2
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /@humanwhocodes/module-importer/1.0.1:
     resolution: {integrity: sha1-r1smkaIrRL6EewyoFkHF+2rQFyw=, tarball: '@humanwhocodes/module-importer/download/@humanwhocodes/module-importer-1.0.1.tgz'}
     engines: {node: '>=12.22'}
+    dev: true
 
   /@humanwhocodes/object-schema/2.0.2:
     resolution: {integrity: sha1-2frgCi1ctA+Sz+ZLR610n7w4+Rc=, tarball: '@humanwhocodes/object-schema/download/@humanwhocodes/object-schema-2.0.2.tgz'}
+    dev: true
 
   /@isaacs/cliui/8.0.2:
     resolution: {integrity: sha1-s3Znt7wYHBaHgiWbq0JHT79StVA=, tarball: '@isaacs/cliui/download/@isaacs/cliui-8.0.2.tgz'}
@@ -914,10 +737,12 @@ packages:
     dependencies:
       '@nodelib/fs.stat': 2.0.5
       run-parallel: 1.2.0
+    dev: true
 
   /@nodelib/fs.stat/2.0.5:
     resolution: {integrity: sha1-W9Jir5Tp0lvR5xsF3u1Eh2oiLos=, tarball: '@nodelib/fs.stat/download/@nodelib/fs.stat-2.0.5.tgz'}
     engines: {node: '>= 8'}
+    dev: true
 
   /@nodelib/fs.walk/1.2.8:
     resolution: {integrity: sha1-6Vc36LtnRt3t9pxVaVNJTxlv5po=, tarball: '@nodelib/fs.walk/download/@nodelib/fs.walk-1.2.8.tgz'}
@@ -925,6 +750,7 @@ packages:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.15.0
+    dev: true
 
   /@pkgjs/parseargs/0.11.0:
     resolution: {integrity: sha1-p36nQvqyV3UUVDTrHSMoz1ATrDM=, tarball: '@pkgjs/parseargs/download/@pkgjs/parseargs-0.11.0.tgz'}
@@ -936,7 +762,7 @@ packages:
   /@pkgr/core/0.1.0:
     resolution: {integrity: sha1-fY2st/3vDkOHyvc5bL138XmGfQY=, tarball: '@pkgr/core/download/@pkgr/core-0.1.0.tgz'}
     engines: {node: ^12.20.0 || ^14.18.0 || >=16.0.0}
-    dev: false
+    dev: true
 
   /@remix-run/router/1.0.3:
     resolution: {integrity: sha1-lTuIwg6gDQ7dr/3BsRXAhHSqKV0=, tarball: '@remix-run/router/download/@remix-run/router-1.0.3.tgz'}
@@ -959,10 +785,6 @@ packages:
     resolution: {integrity: sha1-C5LcwMwcgfbzBqOB8o4xsaVlNuk=, tarball: '@tsconfig/node16/download/@tsconfig/node16-1.0.4.tgz'}
     dev: true
 
-  /@types/estree/1.0.5:
-    resolution: {integrity: sha1-ps4+VW4A/ZiV3Yct0XKtDUvWh/Q=, tarball: '@types/estree/download/@types/estree-1.0.5.tgz'}
-    dev: false
-
   /@types/json-schema/7.0.15:
     resolution: {integrity: sha1-WWoXRyM2lNUPatinhp/Lb1bPWEE=, tarball: '@types/json-schema/download/@types/json-schema-7.0.15.tgz'}
     dev: true
@@ -973,6 +795,12 @@ packages:
 
   /@types/node/18.19.7:
     resolution: {integrity: sha1-ml9qx+xCpd/2j+f68t01lxDeShI=, tarball: '@types/node/download/@types/node-18.19.7.tgz'}
+    dependencies:
+      undici-types: 5.26.5
+    dev: true
+
+  /@types/node/20.11.1:
+    resolution: {integrity: sha1-apP5Sr7aFm9ojT0qyhgBKvvl+FA=, tarball: '@types/node/download/@types/node-20.11.1.tgz'}
     dependencies:
       undici-types: 5.26.5
     dev: true
@@ -1123,6 +951,7 @@ packages:
 
   /@ungap/structured-clone/1.2.0:
     resolution: {integrity: sha1-dWZBrbWHhRtcyz4JXa8nrlgchAY=, tarball: '@ungap/structured-clone/download/@ungap/structured-clone-1.2.0.tgz'}
+    dev: true
 
   /JSONStream/1.3.5:
     resolution: {integrity: sha1-MgjB8I06TZkmGrZPkjArwV4RHKA=, tarball: JSONStream/download/JSONStream-1.3.5.tgz}
@@ -1138,6 +967,7 @@ packages:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
       acorn: 8.11.3
+    dev: true
 
   /acorn-walk/8.3.2:
     resolution: {integrity: sha1-dwOvlBXxttuTFdaJVQOGLiMdNKo=, tarball: acorn-walk/download/acorn-walk-8.3.2.tgz}
@@ -1148,6 +978,7 @@ packages:
     resolution: {integrity: sha1-ceCxThOk7BYHJLOPt7DyM7G4HXo=, tarball: acorn/download/acorn-8.11.3.tgz}
     engines: {node: '>=0.4.0'}
     hasBin: true
+    dev: true
 
   /ajv/6.12.6:
     resolution: {integrity: sha1-uvWmLoArB9l3A0WG+MO69a3ybfQ=, tarball: ajv/download/ajv-6.12.6.tgz}
@@ -1156,6 +987,7 @@ packages:
       fast-json-stable-stringify: 2.1.0
       json-schema-traverse: 0.4.1
       uri-js: 4.4.1
+    dev: true
 
   /ajv/8.12.0:
     resolution: {integrity: sha1-0aBScyPiL1NWLFZ8AJkVd9++GdE=, tarball: ajv/download/ajv-8.12.0.tgz}
@@ -1176,6 +1008,7 @@ packages:
   /ansi-regex/5.0.1:
     resolution: {integrity: sha1-CCyyyJyf6GWaMRpTvWpNxTAdswQ=, tarball: ansi-regex/download/ansi-regex-5.0.1.tgz}
     engines: {node: '>=8'}
+    dev: true
 
   /ansi-regex/6.0.1:
     resolution: {integrity: sha1-MYPjj66aZdfLXlOUXNWJfQJgoGo=, tarball: ansi-regex/download/ansi-regex-6.0.1.tgz}
@@ -1194,6 +1027,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       color-convert: 2.0.1
+    dev: true
 
   /ansi-styles/6.2.1:
     resolution: {integrity: sha1-DmIyDPmcIa//OzASGSVGqsv7BcU=, tarball: ansi-styles/download/ansi-styles-6.2.1.tgz}
@@ -1218,6 +1052,7 @@ packages:
 
   /argparse/2.0.1:
     resolution: {integrity: sha1-JG9Q88p4oyQPbJl+ipvR6sSeSzg=, tarball: argparse/download/argparse-2.0.1.tgz}
+    dev: true
 
   /array-buffer-byte-length/1.0.0:
     resolution: {integrity: sha1-+r6LwZP+qGXzF/54Bwhe4N7lrq0=, tarball: array-buffer-byte-length/download/array-buffer-byte-length-1.0.0.tgz}
@@ -1307,6 +1142,7 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha1-6D46fj8wCzTLnYf2FfoMvzV2kO4=, tarball: balanced-match/download/balanced-match-1.0.2.tgz}
+    dev: true
 
   /binary-extensions/2.2.0:
     resolution: {integrity: sha1-dfUC7q+f/eQvyYgpZFvk6na9ni0=, tarball: binary-extensions/download/binary-extensions-2.2.0.tgz}
@@ -1318,6 +1154,7 @@ packages:
     dependencies:
       balanced-match: 1.0.2
       concat-map: 0.0.1
+    dev: true
 
   /brace-expansion/2.0.1:
     resolution: {integrity: sha1-HtxFng8MVISG7Pn8mfIiE2S5oK4=, tarball: brace-expansion/download/brace-expansion-2.0.1.tgz}
@@ -1345,7 +1182,6 @@ packages:
   /cac/6.7.14:
     resolution: {integrity: sha1-gE4eb1Bu42PLDjzLsJytXdmHCVk=, tarball: cac/download/cac-6.7.14.tgz}
     engines: {node: '>=8'}
-    dev: true
 
   /call-bind/1.0.5:
     resolution: {integrity: sha1-b6K3hFzg6km/TYue9kcnosLi5RM=, tarball: call-bind/download/call-bind-1.0.5.tgz}
@@ -1358,6 +1194,7 @@ packages:
   /callsites/3.1.0:
     resolution: {integrity: sha1-s2MKvYlDQy9Us/BRkjjjPNffL3M=, tarball: callsites/download/callsites-3.1.0.tgz}
     engines: {node: '>=6'}
+    dev: true
 
   /camelcase-keys/6.2.2:
     resolution: {integrity: sha1-XnVda6UaoiPsfT1S8ld4IQ+dw8A=, tarball: camelcase-keys/download/camelcase-keys-6.2.2.tgz}
@@ -1388,6 +1225,7 @@ packages:
     dependencies:
       ansi-styles: 4.3.0
       supports-color: 7.2.0
+    dev: true
 
   /chalk/5.3.0:
     resolution: {integrity: sha1-Z8IKfr73Dn85cKAfkPohDLaGA4U=, tarball: chalk/download/chalk-5.3.0.tgz}
@@ -1444,6 +1282,7 @@ packages:
     engines: {node: '>=7.0.0'}
     dependencies:
       color-name: 1.1.4
+    dev: true
 
   /color-name/1.1.3:
     resolution: {integrity: sha1-p9BVi9icQveV3UIyj3QIMcpTvCU=, tarball: color-name/download/color-name-1.1.3.tgz}
@@ -1451,6 +1290,7 @@ packages:
 
   /color-name/1.1.4:
     resolution: {integrity: sha1-wqCah6y95pVD3m9j+jmVyCbFNqI=, tarball: color-name/download/color-name-1.1.4.tgz}
+    dev: true
 
   /colorette/2.0.20:
     resolution: {integrity: sha1-nreT5oMwZ/cjWQL807CZF6AAqVo=, tarball: colorette/download/colorette-2.0.20.tgz}
@@ -1487,6 +1327,7 @@ packages:
 
   /concat-map/0.0.1:
     resolution: {integrity: sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=, tarball: concat-map/download/concat-map-0.0.1.tgz}
+    dev: true
 
   /conventional-changelog-angular/6.0.0:
     resolution: {integrity: sha1-qalJTCi3FliJFE/VuRVzxKqcpUE=, tarball: conventional-changelog-angular/download/conventional-changelog-angular-6.0.0.tgz}
@@ -1587,6 +1428,7 @@ packages:
       path-key: 3.1.1
       shebang-command: 2.0.0
       which: 2.0.2
+    dev: true
 
   /dargs/7.0.0:
     resolution: {integrity: sha1-BAFcQd4Ly2nshAUPPZvgyvjW1cw=, tarball: dargs/download/dargs-7.0.0.tgz}
@@ -1603,6 +1445,7 @@ packages:
         optional: true
     dependencies:
       ms: 2.1.2
+    dev: true
 
   /decamelize-keys/1.1.1:
     resolution: {integrity: sha1-BKLVI7LxjYDQFYpDuJXVbf+NGdg=, tarball: decamelize-keys/download/decamelize-keys-1.1.1.tgz}
@@ -1619,6 +1462,7 @@ packages:
 
   /deep-is/0.1.4:
     resolution: {integrity: sha1-pvLc5hL63S7x9Rm3NVHxfoUZmDE=, tarball: deep-is/download/deep-is-0.1.4.tgz}
+    dev: true
 
   /define-data-property/1.1.1:
     resolution: {integrity: sha1-w1980KsJiDSA0SrFyyE3FVh4ALM=, tarball: define-data-property/download/define-data-property-1.1.1.tgz}
@@ -1662,6 +1506,7 @@ packages:
     engines: {node: '>=6.0.0'}
     dependencies:
       esutils: 2.0.3
+    dev: true
 
   /dot-prop/5.3.0:
     resolution: {integrity: sha1-kMzOcIzZzYLMTcjD3dmr3VWyDog=, tarball: dot-prop/download/dot-prop-5.3.0.tgz}
@@ -1780,6 +1625,216 @@ packages:
       is-symbol: 1.0.4
     dev: true
 
+  /esbuild-android-64/0.15.18:
+    resolution: {integrity: sha1-IKeuFBbI6q3pF/skU8ElkwLGN6U=, tarball: esbuild-android-64/download/esbuild-android-64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [android]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-android-arm64/0.15.18:
+    resolution: {integrity: sha1-nMDsYFgdatJnVo8pz0iV/92fLwQ=, tarball: esbuild-android-arm64/download/esbuild-android-arm64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [android]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-darwin-64/0.15.18:
+    resolution: {integrity: sha1-Qo4XMOqBnVAICPIg+8UgeuptRBA=, tarball: esbuild-darwin-64/download/esbuild-darwin-64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-darwin-arm64/0.15.18:
+    resolution: {integrity: sha1-tt/HeZEVopF/NZcL+8k65QJWszc=, tarball: esbuild-darwin-arm64/download/esbuild-darwin-arm64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [darwin]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-freebsd-64/0.15.18:
+    resolution: {integrity: sha1-ThkNnC0eZxZGGa4wpDi+h9Xu2vI=, tarball: esbuild-freebsd-64/download/esbuild-freebsd-64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-freebsd-arm64/0.15.18:
+    resolution: {integrity: sha1-GKTANE7iO9Wm0G0Yx24v1tP5FjU=, tarball: esbuild-freebsd-arm64/download/esbuild-freebsd-arm64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [freebsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-linux-32/0.15.18:
+    resolution: {integrity: sha1-mjKXMe4HmxImK3k/uE7qdi6C4M4=, tarball: esbuild-linux-32/download/esbuild-linux-32-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [ia32]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-linux-64/0.15.18:
+    resolution: {integrity: sha1-Uyc4B1OXuZRGe1FOUkrrUgwZG2w=, tarball: esbuild-linux-64/download/esbuild-linux-64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-linux-arm/0.15.18:
+    resolution: {integrity: sha1-5zSq8lmi49EJ1IhsnoHsDy/Zqcw=, tarball: esbuild-linux-arm/download/esbuild-linux-arm-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [arm]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-linux-arm64/0.15.18:
+    resolution: {integrity: sha1-U3LnmTrC2o8GsroxNxDXIreobl0=, tarball: esbuild-linux-arm64/download/esbuild-linux-arm64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-linux-mips64le/0.15.18:
+    resolution: {integrity: sha1-wEh8FKk3GoTrCPqw4dewRadxBes=, tarball: esbuild-linux-mips64le/download/esbuild-linux-mips64le-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [mips64el]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-linux-ppc64le/0.15.18:
+    resolution: {integrity: sha1-rwSK2U7tDOMvbVqHP3q+kRUBJQc=, tarball: esbuild-linux-ppc64le/download/esbuild-linux-ppc64le-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [ppc64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-linux-riscv64/0.15.18:
+    resolution: {integrity: sha1-Qj7U5ZJ713+EK9VmlyF49CTUVeY=, tarball: esbuild-linux-riscv64/download/esbuild-linux-riscv64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [riscv64]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-linux-s390x/0.15.18:
+    resolution: {integrity: sha1-IdIeqpYqGDv7djEuWgHMWuSM6Os=, tarball: esbuild-linux-s390x/download/esbuild-linux-s390x-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [s390x]
+    os: [linux]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-netbsd-64/0.15.18:
+    resolution: {integrity: sha1-rnVoL2DQhWCx/pSCv+AXPlEQuZg=, tarball: esbuild-netbsd-64/download/esbuild-netbsd-64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [netbsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-openbsd-64/0.15.18:
+    resolution: {integrity: sha1-eVkakKo7A+SGP5O+7A0rqyhT0Kg=, tarball: esbuild-openbsd-64/download/esbuild-openbsd-64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [openbsd]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-sunos-64/0.15.18:
+    resolution: {integrity: sha1-/VKKpdpTdLfh6T0275sHw9/tKXE=, tarball: esbuild-sunos-64/download/esbuild-sunos-64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [sunos]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-windows-32/0.15.18:
+    resolution: {integrity: sha1-DpK2bs31Q1p2gTxLxczaBpb078M=, tarball: esbuild-windows-32/download/esbuild-windows-32-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [ia32]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-windows-64/0.15.18:
+    resolution: {integrity: sha1-D8dh14VBQoT8QI55FCJtM/gkINA=, tarball: esbuild-windows-64/download/esbuild-windows-64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [x64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild-windows-arm64/0.15.18:
+    resolution: {integrity: sha1-W1vcVtNB0JIu6UllyJ7hIKaobrc=, tarball: esbuild-windows-arm64/download/esbuild-windows-arm64-0.15.18.tgz}
+    engines: {node: '>=12'}
+    cpu: [arm64]
+    os: [win32]
+    requiresBuild: true
+    dev: false
+    optional: true
+
+  /esbuild/0.15.18:
+    resolution: {integrity: sha1-6olK2vP7wDbTIyCgDU1uSXii820=, tarball: esbuild/download/esbuild-0.15.18.tgz}
+    engines: {node: '>=12'}
+    hasBin: true
+    requiresBuild: true
+    optionalDependencies:
+      '@esbuild/android-arm': 0.15.18
+      '@esbuild/linux-loong64': 0.15.18
+      esbuild-android-64: 0.15.18
+      esbuild-android-arm64: 0.15.18
+      esbuild-darwin-64: 0.15.18
+      esbuild-darwin-arm64: 0.15.18
+      esbuild-freebsd-64: 0.15.18
+      esbuild-freebsd-arm64: 0.15.18
+      esbuild-linux-32: 0.15.18
+      esbuild-linux-64: 0.15.18
+      esbuild-linux-arm: 0.15.18
+      esbuild-linux-arm64: 0.15.18
+      esbuild-linux-mips64le: 0.15.18
+      esbuild-linux-ppc64le: 0.15.18
+      esbuild-linux-riscv64: 0.15.18
+      esbuild-linux-s390x: 0.15.18
+      esbuild-netbsd-64: 0.15.18
+      esbuild-openbsd-64: 0.15.18
+      esbuild-sunos-64: 0.15.18
+      esbuild-windows-32: 0.15.18
+      esbuild-windows-64: 0.15.18
+      esbuild-windows-arm64: 0.15.18
+    dev: false
+
   /esbuild/0.17.19:
     resolution: {integrity: sha1-CHpyfpgpnwRio9C83ZzX/xAL2VU=, tarball: esbuild/download/esbuild-0.17.19.tgz}
     engines: {node: '>=12'}
@@ -1810,37 +1865,6 @@ packages:
       '@esbuild/win32-x64': 0.17.19
     dev: true
 
-  /esbuild/0.19.11:
-    resolution: {integrity: sha1-SgLcoDHnaLVVZgbhtGj+cuMyXZY=, tarball: esbuild/download/esbuild-0.19.11.tgz}
-    engines: {node: '>=12'}
-    hasBin: true
-    requiresBuild: true
-    optionalDependencies:
-      '@esbuild/aix-ppc64': 0.19.11
-      '@esbuild/android-arm': 0.19.11
-      '@esbuild/android-arm64': 0.19.11
-      '@esbuild/android-x64': 0.19.11
-      '@esbuild/darwin-arm64': 0.19.11
-      '@esbuild/darwin-x64': 0.19.11
-      '@esbuild/freebsd-arm64': 0.19.11
-      '@esbuild/freebsd-x64': 0.19.11
-      '@esbuild/linux-arm': 0.19.11
-      '@esbuild/linux-arm64': 0.19.11
-      '@esbuild/linux-ia32': 0.19.11
-      '@esbuild/linux-loong64': 0.19.11
-      '@esbuild/linux-mips64el': 0.19.11
-      '@esbuild/linux-ppc64': 0.19.11
-      '@esbuild/linux-riscv64': 0.19.11
-      '@esbuild/linux-s390x': 0.19.11
-      '@esbuild/linux-x64': 0.19.11
-      '@esbuild/netbsd-x64': 0.19.11
-      '@esbuild/openbsd-x64': 0.19.11
-      '@esbuild/sunos-x64': 0.19.11
-      '@esbuild/win32-arm64': 0.19.11
-      '@esbuild/win32-ia32': 0.19.11
-      '@esbuild/win32-x64': 0.19.11
-    dev: false
-
   /escalade/3.1.1:
     resolution: {integrity: sha1-2M/ccACWXFoBdLSoLqpcBVJ0LkA=, tarball: escalade/download/escalade-3.1.1.tgz}
     engines: {node: '>=6'}
@@ -1854,6 +1878,7 @@ packages:
   /escape-string-regexp/4.0.0:
     resolution: {integrity: sha1-FLqDpdNz49MR5a/KKc9b+tllvzQ=, tarball: escape-string-regexp/download/escape-string-regexp-4.0.0.tgz}
     engines: {node: '>=10'}
+    dev: true
 
   /eslint-config-prettier/9.1.0_eslint@8.56.0:
     resolution: {integrity: sha1-Ma89lFeGRZZsCC/LcaWEbTyUhn8=, tarball: eslint-config-prettier/download/eslint-config-prettier-9.1.0.tgz}
@@ -1862,7 +1887,7 @@ packages:
       eslint: '>=7.0.0'
     dependencies:
       eslint: 8.56.0
-    dev: false
+    dev: true
 
   /eslint-plugin-prettier/5.1.3_19d381ad0672fedae88b59827c20e557:
     resolution: {integrity: sha1-F8+t6ecyzvMrX1vlO9Tgev2OZ+E=, tarball: eslint-plugin-prettier/download/eslint-plugin-prettier-5.1.3.tgz}
@@ -1883,7 +1908,7 @@ packages:
       prettier: 3.2.2
       prettier-linter-helpers: 1.0.0
       synckit: 0.8.8
-    dev: false
+    dev: true
 
   /eslint-plugin-react-hooks/4.6.0_eslint@8.56.0:
     resolution: {integrity: sha1-TD5petlbd+k/hkaqoWMMG6YH7dM=, tarball: eslint-plugin-react-hooks/download/eslint-plugin-react-hooks-4.6.0.tgz}
@@ -1925,10 +1950,12 @@ packages:
     dependencies:
       esrecurse: 4.3.0
       estraverse: 5.3.0
+    dev: true
 
   /eslint-visitor-keys/3.4.3:
     resolution: {integrity: sha1-DNcv6FUOPC6uFWqWpN3c0cisWAA=, tarball: eslint-visitor-keys/download/eslint-visitor-keys-3.4.3.tgz}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+    dev: true
 
   /eslint/8.56.0:
     resolution: {integrity: sha1-SVfOjaQJ3AgJ+ZqwehuUgyq3SxU=, tarball: eslint/download/eslint-8.56.0.tgz}
@@ -1975,6 +2002,7 @@ packages:
       text-table: 0.2.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
 
   /espree/9.6.1:
     resolution: {integrity: sha1-oqF7jkNGkKVDLy+AGM5x0zGkjG8=, tarball: espree/download/espree-9.6.1.tgz}
@@ -1983,26 +2011,31 @@ packages:
       acorn: 8.11.3
       acorn-jsx: 5.3.2_acorn@8.11.3
       eslint-visitor-keys: 3.4.3
+    dev: true
 
   /esquery/1.5.0:
     resolution: {integrity: sha1-bOF3ON6Fd2lO3XNhxXGCrIyw2ws=, tarball: esquery/download/esquery-1.5.0.tgz}
     engines: {node: '>=0.10'}
     dependencies:
       estraverse: 5.3.0
+    dev: true
 
   /esrecurse/4.3.0:
     resolution: {integrity: sha1-eteWTWeauyi+5yzsY3WLHF0smSE=, tarball: esrecurse/download/esrecurse-4.3.0.tgz}
     engines: {node: '>=4.0'}
     dependencies:
       estraverse: 5.3.0
+    dev: true
 
   /estraverse/5.3.0:
     resolution: {integrity: sha1-LupSkHAvJquP5TcDcP+GyWXSESM=, tarball: estraverse/download/estraverse-5.3.0.tgz}
     engines: {node: '>=4.0'}
+    dev: true
 
   /esutils/2.0.3:
     resolution: {integrity: sha1-dNLrTeC42hKTcRkQ1Qd1ubcQ72Q=, tarball: esutils/download/esutils-2.0.3.tgz}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /eventemitter3/5.0.1:
     resolution: {integrity: sha1-U/X/0KSSrIAHIbtCxmuEHelkI8Q=, tarball: eventemitter3/download/eventemitter3-5.0.1.tgz}
@@ -2040,10 +2073,11 @@ packages:
 
   /fast-deep-equal/3.1.3:
     resolution: {integrity: sha1-On1WtVnWy8PrUSMlJE5hmmXGxSU=, tarball: fast-deep-equal/download/fast-deep-equal-3.1.3.tgz}
+    dev: true
 
   /fast-diff/1.3.0:
     resolution: {integrity: sha1-7OQH+lUKZNY4U2zXJ+EpxhYW4PA=, tarball: fast-diff/download/fast-diff-1.3.0.tgz}
-    dev: false
+    dev: true
 
   /fast-glob/3.3.2:
     resolution: {integrity: sha1-qQRQHlfP3S/83tRemaVP71XkYSk=, tarball: fast-glob/download/fast-glob-3.3.2.tgz}
@@ -2058,20 +2092,24 @@ packages:
 
   /fast-json-stable-stringify/2.1.0:
     resolution: {integrity: sha1-h0v2nG9ATCtdmcSBNBOZ/VWJJjM=, tarball: fast-json-stable-stringify/download/fast-json-stable-stringify-2.1.0.tgz}
+    dev: true
 
   /fast-levenshtein/2.0.6:
     resolution: {integrity: sha1-PYpcZog6FqMMqGQ+hR8Zuqd5eRc=, tarball: fast-levenshtein/download/fast-levenshtein-2.0.6.tgz}
+    dev: true
 
   /fastq/1.15.0:
     resolution: {integrity: sha1-0E0HxqKmj+RZn+qNLhA6k3+uazo=, tarball: fastq/download/fastq-1.15.0.tgz}
     dependencies:
       reusify: 1.0.4
+    dev: true
 
   /file-entry-cache/6.0.1:
     resolution: {integrity: sha1-IRst2WWcsDlLBz5zI6w8kz1SICc=, tarball: file-entry-cache/download/file-entry-cache-6.0.1.tgz}
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
       flat-cache: 3.2.0
+    dev: true
 
   /fill-range/7.0.1:
     resolution: {integrity: sha1-GRmmp8df44ssfHflGYU12prN2kA=, tarball: fill-range/download/fill-range-7.0.1.tgz}
@@ -2094,6 +2132,7 @@ packages:
     dependencies:
       locate-path: 6.0.0
       path-exists: 4.0.0
+    dev: true
 
   /flat-cache/3.2.0:
     resolution: {integrity: sha1-LAwtUEDJmxYydxqdEFclwBFTY+4=, tarball: flat-cache/download/flat-cache-3.2.0.tgz}
@@ -2102,9 +2141,11 @@ packages:
       flatted: 3.2.9
       keyv: 4.5.4
       rimraf: 3.0.2
+    dev: true
 
   /flatted/3.2.9:
     resolution: {integrity: sha1-frTGfKG6NCMsqdLZPpiG5hGtfa8=, tarball: flatted/download/flatted-3.2.9.tgz}
+    dev: true
 
   /for-each/0.3.3:
     resolution: {integrity: sha1-abRH6IoKXTLD5whPPxcQA0shN24=, tarball: for-each/download/for-each-0.3.3.tgz}
@@ -2131,6 +2172,7 @@ packages:
 
   /fs.realpath/1.0.0:
     resolution: {integrity: sha1-FQStJSMVjKpA20onh8sBQRmU6k8=, tarball: fs.realpath/download/fs.realpath-1.0.0.tgz}
+    dev: true
 
   /fsevents/2.3.3:
     resolution: {integrity: sha1-ysZAd4XQNnWipeGlMFxpezR9kNY=, tarball: fsevents/download/fsevents-2.3.3.tgz}
@@ -2141,7 +2183,6 @@ packages:
 
   /function-bind/1.1.2:
     resolution: {integrity: sha1-LALYZNl/PqbIgwxGTL0Rq26rehw=, tarball: function-bind/download/function-bind-1.1.2.tgz}
-    dev: true
 
   /function.prototype.name/1.1.6:
     resolution: {integrity: sha1-zfMVt9kO53pMbuIWw8M2LaB1M/0=, tarball: function.prototype.name/download/function.prototype.name-1.1.6.tgz}
@@ -2218,6 +2259,7 @@ packages:
     engines: {node: '>=10.13.0'}
     dependencies:
       is-glob: 4.0.3
+    dev: true
 
   /glob/10.3.10:
     resolution: {integrity: sha1-A1HruAn9GH/kIauWr4PTpwcV30s=, tarball: glob/download/glob-10.3.10.tgz}
@@ -2240,6 +2282,7 @@ packages:
       minimatch: 3.1.2
       once: 1.4.0
       path-is-absolute: 1.0.1
+    dev: true
 
   /global-dirs/0.1.1:
     resolution: {integrity: sha1-sxnA3UYH81PzvpzKTHL8FIxJ9EU=, tarball: global-dirs/download/global-dirs-0.1.1.tgz}
@@ -2253,6 +2296,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       type-fest: 0.20.2
+    dev: true
 
   /globalthis/1.0.3:
     resolution: {integrity: sha1-WFKIKlK4DcMBsGYCc+HtCC8LbM8=, tarball: globalthis/download/globalthis-1.0.3.tgz}
@@ -2285,6 +2329,7 @@ packages:
 
   /graphemer/1.4.0:
     resolution: {integrity: sha1-+y8dVeDjoYSa7/yQxPoN1ToOZsY=, tarball: graphemer/download/graphemer-1.4.0.tgz}
+    dev: true
 
   /hard-rejection/2.1.0:
     resolution: {integrity: sha1-HG7aXBaFxjlCdm15u0Cudzzs2IM=, tarball: hard-rejection/download/hard-rejection-2.1.0.tgz}
@@ -2303,6 +2348,7 @@ packages:
   /has-flag/4.0.0:
     resolution: {integrity: sha1-lEdx/ZyByBJlxNaUGGDaBrtZR5s=, tarball: has-flag/download/has-flag-4.0.0.tgz}
     engines: {node: '>=8'}
+    dev: true
 
   /has-property-descriptors/1.0.1:
     resolution: {integrity: sha1-UrowtsXsh/2J+ldLwcORJcb2U0A=, tarball: has-property-descriptors/download/has-property-descriptors-1.0.1.tgz}
@@ -2332,7 +2378,6 @@ packages:
     engines: {node: '>= 0.4'}
     dependencies:
       function-bind: 1.1.2
-    dev: true
 
   /hosted-git-info/2.8.9:
     resolution: {integrity: sha1-3/wL+aIcAiCQkPKqaUKeFBTa8/k=, tarball: hosted-git-info/download/hosted-git-info-2.8.9.tgz}
@@ -2364,6 +2409,7 @@ packages:
   /ignore/5.3.0:
     resolution: {integrity: sha1-Z0GK5A001pmclf9WAWdZxxjIL3g=, tarball: ignore/download/ignore-5.3.0.tgz}
     engines: {node: '>= 4'}
+    dev: true
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha1-NxYsJfy566oublPVtNiM4X2eDCs=, tarball: import-fresh/download/import-fresh-3.3.0.tgz}
@@ -2371,10 +2417,12 @@ packages:
     dependencies:
       parent-module: 1.0.1
       resolve-from: 4.0.0
+    dev: true
 
   /imurmurhash/0.1.4:
     resolution: {integrity: sha1-khi5srkoojixPcT7a21XbyMUU+o=, tarball: imurmurhash/download/imurmurhash-0.1.4.tgz}
     engines: {node: '>=0.8.19'}
+    dev: true
 
   /indent-string/4.0.0:
     resolution: {integrity: sha1-Yk+PRJfWGbLZdoUx1Y9BIoVNclE=, tarball: indent-string/download/indent-string-4.0.0.tgz}
@@ -2386,9 +2434,11 @@ packages:
     dependencies:
       once: 1.4.0
       wrappy: 1.0.2
+    dev: true
 
   /inherits/2.0.4:
     resolution: {integrity: sha1-D6LGT5MpF8NDOg3tVTY6rjdBa3w=, tarball: inherits/download/inherits-2.0.4.tgz}
+    dev: true
 
   /ini/1.3.8:
     resolution: {integrity: sha1-op2kJbSIBvNHZ6Tvzjlyaa8oQyw=, tarball: ini/download/ini-1.3.8.tgz}
@@ -2452,7 +2502,6 @@ packages:
     resolution: {integrity: sha1-rQ11Msb+qdoevcgnQtdFJcYnM4Q=, tarball: is-core-module/download/is-core-module-2.13.1.tgz}
     dependencies:
       hasown: 2.0.0
-    dev: true
 
   /is-date-object/1.0.5:
     resolution: {integrity: sha1-CEHVU25yTCVZe/bqYuG9OCmN8x8=, tarball: is-date-object/download/is-date-object-1.0.5.tgz}
@@ -2464,6 +2513,7 @@ packages:
   /is-extglob/2.1.1:
     resolution: {integrity: sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=, tarball: is-extglob/download/is-extglob-2.1.1.tgz}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /is-finalizationregistry/1.0.2:
     resolution: {integrity: sha1-yHSbZfF8EzMT5mGxKJuVrT29YuY=, tarball: is-finalizationregistry/download/is-finalizationregistry-1.0.2.tgz}
@@ -2500,6 +2550,7 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       is-extglob: 2.1.1
+    dev: true
 
   /is-map/2.0.2:
     resolution: {integrity: sha1-AJItuMm/c+gbejNYJ7wqQ/K5ESc=, tarball: is-map/download/is-map-2.0.2.tgz}
@@ -2530,6 +2581,7 @@ packages:
   /is-path-inside/3.0.3:
     resolution: {integrity: sha1-0jE2LlOgf/Kw4Op/7QSRYf/RYoM=, tarball: is-path-inside/download/is-path-inside-3.0.3.tgz}
     engines: {node: '>=8'}
+    dev: true
 
   /is-plain-obj/1.1.0:
     resolution: {integrity: sha1-caUMhCnfync8kqOQpKA7OfzVHT4=, tarball: is-plain-obj/download/is-plain-obj-1.1.0.tgz}
@@ -2622,6 +2674,7 @@ packages:
 
   /isexe/2.0.0:
     resolution: {integrity: sha1-6PvzdNxVb/iUehDcsFctYz8s+hA=, tarball: isexe/download/isexe-2.0.0.tgz}
+    dev: true
 
   /iterator.prototype/1.1.2:
     resolution: {integrity: sha1-XinIkk8BkWy5M18f+AYZ3P8isMA=, tarball: iterator.prototype/download/iterator.prototype-1.1.2.tgz}
@@ -2660,9 +2713,11 @@ packages:
     hasBin: true
     dependencies:
       argparse: 2.0.1
+    dev: true
 
   /json-buffer/3.0.1:
     resolution: {integrity: sha1-kziAKjDTtmBfvgYT4JQAjKjAWhM=, tarball: json-buffer/download/json-buffer-3.0.1.tgz}
+    dev: true
 
   /json-parse-even-better-errors/2.3.1:
     resolution: {integrity: sha1-fEeAWpQxmSjgV3dAXcEuH3pO4C0=, tarball: json-parse-even-better-errors/download/json-parse-even-better-errors-2.3.1.tgz}
@@ -2670,6 +2725,7 @@ packages:
 
   /json-schema-traverse/0.4.1:
     resolution: {integrity: sha1-afaofZUTq4u4/mO9sJecRI5oRmA=, tarball: json-schema-traverse/download/json-schema-traverse-0.4.1.tgz}
+    dev: true
 
   /json-schema-traverse/1.0.0:
     resolution: {integrity: sha1-rnvLNlard6c7pcSb9lTzjmtoYOI=, tarball: json-schema-traverse/download/json-schema-traverse-1.0.0.tgz}
@@ -2677,6 +2733,7 @@ packages:
 
   /json-stable-stringify-without-jsonify/1.0.1:
     resolution: {integrity: sha1-nbe1lJatPzz+8wp1FC0tkwrXJlE=, tarball: json-stable-stringify-without-jsonify/download/json-stable-stringify-without-jsonify-1.0.1.tgz}
+    dev: true
 
   /jsonfile/6.1.0:
     resolution: {integrity: sha1-vFWyY0eTxnnsZAMJTrE2mKbsCq4=, tarball: jsonfile/download/jsonfile-6.1.0.tgz}
@@ -2705,6 +2762,7 @@ packages:
     resolution: {integrity: sha1-qHmpnilFL5QkOfKkBeOvizHU3pM=, tarball: keyv/download/keyv-4.5.4.tgz}
     dependencies:
       json-buffer: 3.0.1
+    dev: true
 
   /kind-of/6.0.3:
     resolution: {integrity: sha1-B8BQNKbDSfoG4k+jWqdttFgM5N0=, tarball: kind-of/download/kind-of-6.0.3.tgz}
@@ -2717,6 +2775,7 @@ packages:
     dependencies:
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    dev: true
 
   /lilconfig/2.1.0:
     resolution: {integrity: sha1-eOI6yJ67fhv78lsYBD3nVlSOf1I=, tarball: lilconfig/download/lilconfig-2.1.0.tgz}
@@ -2780,6 +2839,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-locate: 5.0.0
+    dev: true
 
   /lodash.camelcase/4.3.0:
     resolution: {integrity: sha1-soqmKIorn8ZRA1x3EfZathkDMaY=, tarball: lodash.camelcase/download/lodash.camelcase-4.3.0.tgz}
@@ -2799,6 +2859,7 @@ packages:
 
   /lodash.merge/4.6.2:
     resolution: {integrity: sha1-VYqlO0O2YeGSWgr9+japoQhf5Xo=, tarball: lodash.merge/download/lodash.merge-4.6.2.tgz}
+    dev: true
 
   /lodash.mergewith/4.6.2:
     resolution: {integrity: sha1-YXEh+JrFX1kEfHrsHM1mVMZZD1U=, tarball: lodash.mergewith/download/lodash.mergewith-4.6.2.tgz}
@@ -2929,6 +2990,7 @@ packages:
     resolution: {integrity: sha1-Gc0ZS/0+Qo8EmnCBfAONiatL41s=, tarball: minimatch/download/minimatch-3.1.2.tgz}
     dependencies:
       brace-expansion: 1.1.11
+    dev: true
 
   /minimatch/9.0.3:
     resolution: {integrity: sha1-puAMPeRMOlQr+q5wq/wiQgptqCU=, tarball: minimatch/download/minimatch-9.0.3.tgz}
@@ -2957,6 +3019,7 @@ packages:
 
   /ms/2.1.2:
     resolution: {integrity: sha1-0J0fNXtEP0kzgqjrPM0YOHKuYAk=, tarball: ms/download/ms-2.1.2.tgz}
+    dev: true
 
   /mz/2.7.0:
     resolution: {integrity: sha1-lQCAV6Vsr63CvGPd5/n/aVWUjjI=, tarball: mz/download/mz-2.7.0.tgz}
@@ -2974,6 +3037,7 @@ packages:
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=, tarball: natural-compare/download/natural-compare-1.4.0.tgz}
+    dev: true
 
   /normalize-package-data/2.5.0:
     resolution: {integrity: sha1-5m2xg4sgDB38IzIl0SyzZSDiNKg=, tarball: normalize-package-data/download/normalize-package-data-2.5.0.tgz}
@@ -3075,6 +3139,7 @@ packages:
     resolution: {integrity: sha1-WDsap3WWHUsROsF9nFC6753Xa9E=, tarball: once/download/once-1.4.0.tgz}
     dependencies:
       wrappy: 1.0.2
+    dev: true
 
   /onetime/5.1.2:
     resolution: {integrity: sha1-0Oluu1awdHbfHdnEgG5SN5hcpF4=, tarball: onetime/download/onetime-5.1.2.tgz}
@@ -3100,6 +3165,7 @@ packages:
       levn: 0.4.1
       prelude-ls: 1.2.1
       type-check: 0.4.0
+    dev: true
 
   /p-limit/2.3.0:
     resolution: {integrity: sha1-PdM8ZHohT9//2DWTPrCG2g3CHbE=, tarball: p-limit/download/p-limit-2.3.0.tgz}
@@ -3113,6 +3179,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yocto-queue: 0.1.0
+    dev: true
 
   /p-locate/4.1.0:
     resolution: {integrity: sha1-o0KLtwiLOmApL2aRkni3wpetTwc=, tarball: p-locate/download/p-locate-4.1.0.tgz}
@@ -3126,6 +3193,7 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       p-limit: 3.1.0
+    dev: true
 
   /p-try/2.2.0:
     resolution: {integrity: sha1-yyhoVA4xPWHeWPr741zpAE1VQOY=, tarball: p-try/download/p-try-2.2.0.tgz}
@@ -3137,6 +3205,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       callsites: 3.1.0
+    dev: true
 
   /parse-json/5.2.0:
     resolution: {integrity: sha1-x2/Gbe5UIxyWKyK8yKcs8vmXU80=, tarball: parse-json/download/parse-json-5.2.0.tgz}
@@ -3151,14 +3220,17 @@ packages:
   /path-exists/4.0.0:
     resolution: {integrity: sha1-UTvb4tO5XXdi6METfvoZXGxhtbM=, tarball: path-exists/download/path-exists-4.0.0.tgz}
     engines: {node: '>=8'}
+    dev: true
 
   /path-is-absolute/1.0.1:
     resolution: {integrity: sha1-F0uSaHNVNP+8es5r9TpanhtcX18=, tarball: path-is-absolute/download/path-is-absolute-1.0.1.tgz}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /path-key/3.1.1:
     resolution: {integrity: sha1-WB9q3mWMu6ZaDTOA3ndTKVBU83U=, tarball: path-key/download/path-key-3.1.1.tgz}
     engines: {node: '>=8'}
+    dev: true
 
   /path-key/4.0.0:
     resolution: {integrity: sha1-KVWI3DruZBVPh3rbnXgLgcVUvxg=, tarball: path-key/download/path-key-4.0.0.tgz}
@@ -3167,7 +3239,6 @@ packages:
 
   /path-parse/1.0.7:
     resolution: {integrity: sha1-+8EUtgykKzDZ2vWFjkvWi77bZzU=, tarball: path-parse/download/path-parse-1.0.7.tgz}
-    dev: true
 
   /path-scurry/1.10.1:
     resolution: {integrity: sha1-m6a/WqhQD+n9Z99PDZSDsrC/xpg=, tarball: path-scurry/download/path-scurry-1.10.1.tgz}
@@ -3230,19 +3301,20 @@ packages:
   /prelude-ls/1.2.1:
     resolution: {integrity: sha1-3rxkidem5rDnYRiIzsiAM30xY5Y=, tarball: prelude-ls/download/prelude-ls-1.2.1.tgz}
     engines: {node: '>= 0.8.0'}
+    dev: true
 
   /prettier-linter-helpers/1.0.0:
     resolution: {integrity: sha1-0j1B/hN1ZG3i0BBNNFSjAIgCz3s=, tarball: prettier-linter-helpers/download/prettier-linter-helpers-1.0.0.tgz}
     engines: {node: '>=6.0.0'}
     dependencies:
       fast-diff: 1.3.0
-    dev: false
+    dev: true
 
   /prettier/3.2.2:
     resolution: {integrity: sha1-luWA98qclgkK0FRhbAxFl+KES2U=, tarball: prettier/download/prettier-3.2.2.tgz}
     engines: {node: '>=14'}
     hasBin: true
-    dev: false
+    dev: true
 
   /prop-types/15.8.1:
     resolution: {integrity: sha1-Z9h78aaU9IQ1zzMsJK8QIUoxQLU=, tarball: prop-types/download/prop-types-15.8.1.tgz}
@@ -3255,9 +3327,11 @@ packages:
   /punycode/2.3.1:
     resolution: {integrity: sha1-AnQi4vrsCyXhVJw+G9gwm5EztuU=, tarball: punycode/download/punycode-2.3.1.tgz}
     engines: {node: '>=6'}
+    dev: true
 
   /queue-microtask/1.2.3:
     resolution: {integrity: sha1-SSkii7xyTfrEPg77BYyve2z7YkM=, tarball: queue-microtask/download/queue-microtask-1.2.3.tgz}
+    dev: true
 
   /quick-lru/4.0.1:
     resolution: {integrity: sha1-W4h48ROlgheEjGSCAmxz4bpXcn8=, tarball: quick-lru/download/quick-lru-4.0.1.tgz}
@@ -3385,6 +3459,7 @@ packages:
   /resolve-from/4.0.0:
     resolution: {integrity: sha1-SrzYUq0y3Xuqv+m0DgCjbbXzkuY=, tarball: resolve-from/download/resolve-from-4.0.0.tgz}
     engines: {node: '>=4'}
+    dev: true
 
   /resolve-from/5.0.0:
     resolution: {integrity: sha1-w1IlhD3493bfIcV1V7wIfp39/Gk=, tarball: resolve-from/download/resolve-from-5.0.0.tgz}
@@ -3405,7 +3480,6 @@ packages:
       is-core-module: 2.13.1
       path-parse: 1.0.7
       supports-preserve-symlinks-flag: 1.0.0
-    dev: true
 
   /resolve/2.0.0-next.5:
     resolution: {integrity: sha1-aw7DEH5nHlK2jNBo7zJxc7kNwDw=, tarball: resolve/download/resolve-2.0.0-next.5.tgz}
@@ -3427,6 +3501,7 @@ packages:
   /reusify/1.0.4:
     resolution: {integrity: sha1-kNo4Kx4SbvwCFG6QhFqI2xKSXXY=, tarball: reusify/download/reusify-1.0.4.tgz}
     engines: {iojs: '>=1.0.0', node: '>=0.10.0'}
+    dev: true
 
   /rfdc/1.3.0:
     resolution: {integrity: sha1-0LfEQasnINBdxM8m4ByJYx2doIs=, tarball: rfdc/download/rfdc-1.3.0.tgz}
@@ -3437,6 +3512,15 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rollup/2.78.1:
+    resolution: {integrity: sha1-Uv45NNnIPLT3xMtft12IWRvoZI8=, tarball: rollup/download/rollup-2.78.1.tgz}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.3
+    dev: false
 
   /rollup/3.29.4:
     resolution: {integrity: sha1-TXDA+YNBRt+HBb+2mpoZyeEQmYE=, tarball: rollup/download/rollup-3.29.4.tgz}
@@ -3446,20 +3530,11 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /rollup/4.9.5:
-    resolution: {integrity: sha1-YpmUYskPTItdfDj8cWHmOykQGwU=, tarball: rollup/download/rollup-4.9.5.tgz}
-    engines: {node: '>=18.0.0', npm: '>=8.0.0'}
-    hasBin: true
-    dependencies:
-      '@types/estree': 1.0.5
-    optionalDependencies:
-      fsevents: 2.3.3
-    dev: false
-
   /run-parallel/1.2.0:
     resolution: {integrity: sha1-ZtE2jae9+SHrnZW9GpIp5/IaQ+4=, tarball: run-parallel/download/run-parallel-1.2.0.tgz}
     dependencies:
       queue-microtask: 1.2.3
+    dev: true
 
   /safe-array-concat/1.0.1:
     resolution: {integrity: sha1-kWhqY8462+oU1hsUyZVyqP+EdUw=, tarball: safe-array-concat/download/safe-array-concat-1.0.1.tgz}
@@ -3531,10 +3606,12 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       shebang-regex: 3.0.0
+    dev: true
 
   /shebang-regex/3.0.0:
     resolution: {integrity: sha1-rhbxZE2HPsrYQ7AwexQzYtTEIXI=, tarball: shebang-regex/download/shebang-regex-3.0.0.tgz}
     engines: {node: '>=8'}
+    dev: true
 
   /side-channel/1.0.4:
     resolution: {integrity: sha1-785cj9wQTudRslxY1CkAEfpeos8=, tarball: side-channel/download/side-channel-1.0.4.tgz}
@@ -3701,6 +3778,7 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       ansi-regex: 5.0.1
+    dev: true
 
   /strip-ansi/7.1.0:
     resolution: {integrity: sha1-1bZWjKaJ2FYTcLBwdoXSJDT6/0U=, tarball: strip-ansi/download/strip-ansi-7.1.0.tgz}
@@ -3729,6 +3807,7 @@ packages:
   /strip-json-comments/3.1.1:
     resolution: {integrity: sha1-MfEoGzgyYwQ0gxwxDAHMzajL4AY=, tarball: strip-json-comments/download/strip-json-comments-3.1.1.tgz}
     engines: {node: '>=8'}
+    dev: true
 
   /sucrase/3.35.0:
     resolution: {integrity: sha1-V/F6PX4Zs22JlfBmedEhvpFK4mM=, tarball: sucrase/download/sucrase-3.35.0.tgz}
@@ -3756,11 +3835,11 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       has-flag: 4.0.0
+    dev: true
 
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha1-btpL00SjyUrqN21MwxvHcxEDngk=, tarball: supports-preserve-symlinks-flag/download/supports-preserve-symlinks-flag-1.0.0.tgz}
     engines: {node: '>= 0.4'}
-    dev: true
 
   /synckit/0.8.8:
     resolution: {integrity: sha1-/n/kRlGOPT1J9eQp9EPPCLbt/Nc=, tarball: synckit/download/synckit-0.8.8.tgz}
@@ -3768,7 +3847,7 @@ packages:
     dependencies:
       '@pkgr/core': 0.1.0
       tslib: 2.6.2
-    dev: false
+    dev: true
 
   /text-extensions/1.9.0:
     resolution: {integrity: sha1-GFPkX+45yUXOb2w2stZZtaq8KiY=, tarball: text-extensions/download/text-extensions-1.9.0.tgz}
@@ -3782,6 +3861,7 @@ packages:
 
   /text-table/0.2.0:
     resolution: {integrity: sha1-f17oI66AUgfACvLfSoTsP8+lcLQ=, tarball: text-table/download/text-table-0.2.0.tgz}
+    dev: true
 
   /thenify-all/1.6.0:
     resolution: {integrity: sha1-GhkY1ALY/D+Y+/I02wvMjMEOlyY=, tarball: thenify-all/download/thenify-all-1.6.0.tgz}
@@ -3875,7 +3955,7 @@ packages:
 
   /tslib/2.6.2:
     resolution: {integrity: sha1-cDrClCXns3zW/UVukkBNRtHz5K4=, tarball: tslib/download/tslib-2.6.2.tgz}
-    dev: false
+    dev: true
 
   /tsup/6.7.0_typescript@5.3.3:
     resolution: {integrity: sha1-QW81DzKge2roZ5KtflKwyvxWbWQ=, tarball: tsup/download/tsup-6.7.0.tgz}
@@ -3918,6 +3998,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dependencies:
       prelude-ls: 1.2.1
+    dev: true
 
   /type-fest/0.18.1:
     resolution: {integrity: sha1-20vBUaSiz07r+a3V23VQjbbMhB8=, tarball: type-fest/download/type-fest-0.18.1.tgz}
@@ -3927,6 +4008,7 @@ packages:
   /type-fest/0.20.2:
     resolution: {integrity: sha1-G/IH9LKPkVg2ZstfvTJ4hzAc1fQ=, tarball: type-fest/download/type-fest-0.20.2.tgz}
     engines: {node: '>=10'}
+    dev: true
 
   /type-fest/0.6.0:
     resolution: {integrity: sha1-jSojcNPfiG61yQraHFv2GIrPg4s=, tarball: type-fest/download/type-fest-0.6.0.tgz}
@@ -3985,6 +4067,7 @@ packages:
     resolution: {integrity: sha1-s85roljnLmMFumb1ybRSqu4//jc=, tarball: typescript/download/typescript-5.3.3.tgz}
     engines: {node: '>=14.17'}
     hasBin: true
+    dev: true
 
   /unbox-primitive/1.0.2:
     resolution: {integrity: sha1-KQMgIQV9Xmzb0IxRKcIm3/jtb54=, tarball: unbox-primitive/download/unbox-primitive-1.0.2.tgz}
@@ -4008,6 +4091,7 @@ packages:
     resolution: {integrity: sha1-mxpSWVIlhZ5V9mnZKPiMbFfyp34=, tarball: uri-js/download/uri-js-4.4.1.tgz}
     dependencies:
       punycode: 2.3.1
+    dev: true
 
   /util-deprecate/1.0.2:
     resolution: {integrity: sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=, tarball: util-deprecate/download/util-deprecate-1.0.2.tgz}
@@ -4024,37 +4108,29 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite/5.0.11:
-    resolution: {integrity: sha1-MVYuQeAEy2jh1R9dLGQasxOyieQ=, tarball: vite/download/vite-5.0.11.tgz}
-    engines: {node: ^18.0.0 || >=20.0.0}
+  /vite/3.1.4:
+    resolution: {integrity: sha1-t1gkuBnYNUpvNuS5iJQ8fklH4VU=, tarball: vite/download/vite-3.1.4.tgz}
+    engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
-      '@types/node': ^18.0.0 || >=20.0.0
       less: '*'
-      lightningcss: ^1.21.0
       sass: '*'
       stylus: '*'
-      sugarss: '*'
       terser: ^5.4.0
     peerDependenciesMeta:
-      '@types/node':
-        optional: true
       less:
-        optional: true
-      lightningcss:
         optional: true
       sass:
         optional: true
       stylus:
         optional: true
-      sugarss:
-        optional: true
       terser:
         optional: true
     dependencies:
-      esbuild: 0.19.11
+      esbuild: 0.15.18
       postcss: 8.4.33
-      rollup: 4.9.5
+      resolve: 1.22.8
+      rollup: 2.78.1
     optionalDependencies:
       fsevents: 2.3.3
     dev: false
@@ -4125,6 +4201,7 @@ packages:
     hasBin: true
     dependencies:
       isexe: 2.0.0
+    dev: true
 
   /wrap-ansi/7.0.0:
     resolution: {integrity: sha1-Z+FFz/UQpqaYS98RUpEdadLrnkM=, tarball: wrap-ansi/download/wrap-ansi-7.0.0.tgz}
@@ -4155,6 +4232,7 @@ packages:
 
   /wrappy/1.0.2:
     resolution: {integrity: sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=, tarball: wrappy/download/wrappy-1.0.2.tgz}
+    dev: true
 
   /y18n/5.0.8:
     resolution: {integrity: sha1-f0k00PfKjFb5UxSTndzS3ZHOHVU=, tarball: y18n/download/y18n-5.0.8.tgz}
@@ -4206,3 +4284,4 @@ packages:
   /yocto-queue/0.1.0:
     resolution: {integrity: sha1-ApTrPe4FAo0x7hpfosVWpqrxChs=, tarball: yocto-queue/download/yocto-queue-0.1.0.tgz}
     engines: {node: '>=10'}
+    dev: true
