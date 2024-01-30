@@ -19,15 +19,16 @@ specifiers:
   react: ^18.2.0
   react-dom: ^18.2.0
   react-router-dom: 6.4.3
+  rollup: ^3.2.3
   tsup: ^6.5.0
   typescript: ^5.3.3
   vite: 3.1.4
 
 dependencies:
-  cac: 6.7.14
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-router-dom: 6.4.3_react-dom@18.2.0+react@18.2.0
+  rollup: 3.29.4
   vite: 3.1.4
 
 devDependencies:
@@ -36,6 +37,7 @@ devDependencies:
   '@types/node': 20.11.1
   '@typescript-eslint/eslint-plugin': 6.18.1_bd4431c1ace7ad11d2659b56d56b16c7
   '@typescript-eslint/parser': 6.18.1_eslint@8.56.0+typescript@5.3.3
+  cac: 6.7.14
   commitlint: 17.4.4
   eslint: 8.56.0
   eslint-config-prettier: 9.1.0_eslint@8.56.0
@@ -1182,6 +1184,7 @@ packages:
   /cac/6.7.14:
     resolution: {integrity: sha1-gE4eb1Bu42PLDjzLsJytXdmHCVk=, tarball: cac/download/cac-6.7.14.tgz}
     engines: {node: '>=8'}
+    dev: true
 
   /call-bind/1.0.5:
     resolution: {integrity: sha1-b6K3hFzg6km/TYue9kcnosLi5RM=, tarball: call-bind/download/call-bind-1.0.5.tgz}
@@ -3528,7 +3531,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.3
-    dev: true
 
   /run-parallel/1.2.0:
     resolution: {integrity: sha1-ZtE2jae9+SHrnZW9GpIp5/IaQ+4=, tarball: run-parallel/download/run-parallel-1.2.0.tgz}
