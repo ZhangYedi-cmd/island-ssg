@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ZhangYedi-cmd/island-ssg/issues"
   },
-  "homepage": "https://github.com/ZhangYedi-cmd/island-ssg#readme"
+  "homepage": "https://github.com/ZhangYedi-cmd/island-ssg#readme",
+  "dependencies": {
+    "fs-extra": "^11.2.0"
+  }
 }

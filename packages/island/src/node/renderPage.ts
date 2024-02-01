@@ -1,14 +1,20 @@
-import {RollupOutput} from "rollup";
-import fs from 'fs-extra'
-import {join} from "path";
+import { RollupOutput } from 'rollup';
+import fs from 'fs-extra';
+import { join } from 'path';
 
-export const renderPage = async (root: string, render: () => string, clientBundle: RollupOutput) => {
-    // SSR  ->  HTML DOM
-    const html = render()
-    // CSR -> chunks
-    const clientChunk = clientBundle?.output?.find((chunk) => chunk.type === 'chunk' && chunk.isEntry)
+export const renderPage = async (
+  root: string,
+  render: () => string,
+  clientBundle: RollupOutput
+) => {
+  // SSR  ->  HTML DOM
+  const html = render();
+  // CSR -> chunks
+  const clientChunk = clientBundle?.output?.find(
+    (chunk) => chunk.type === 'chunk' && chunk.isEntry
+  );
 
-    const res = ` <!doctype html>
+  const res = ` <!doctype html>
       <html lang="en">
       <head>
         <meta charset="UTF-8">
@@ -21,9 +27,9 @@ export const renderPage = async (root: string, render: () => string, clientBundl
          <div id="root">${html}</div>
           <script type="module" src="/${clientChunk?.fileName}"></script>
       </body>
-      </html>`
+      </html>`;
 
-    await fs.ensureDir(join(root, 'build'))
-    await fs.writeFile(join(root, 'build/index.html'), res)
-    await fs.remove(join(root, '.temp'))
-}
+  await fs.ensureDir(join(root, 'build'));
+  await fs.writeFile(join(root, 'build/index.html'), res);
+  await fs.remove(join(root, '.temp'));
+};

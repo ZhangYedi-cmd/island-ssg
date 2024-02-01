@@ -1,11 +1,11 @@
-import React from "react";
-import {Content} from "./Content";
+import React from 'react';
+import { Content } from './Content';
 
 export const App = () => {
-    return (
-        <>
-            This is Home Page
-            <Content/>
-        </>
-    )
-}
+  return (
+    <>
+      This is Home Page
+      <Content />
+    </>
+  );
+};

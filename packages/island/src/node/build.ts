@@ -1,8 +1,8 @@
 import { build as viteBuild, InlineConfig } from 'vite';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
 import { RollupOutput } from 'rollup';
-import {join} from "path";
-import {renderPage} from "./renderPage";
+import { join } from 'path';
+import { renderPage } from './renderPage';
 
 export const bundle = async (root: string) => {
   const resolveBuildConfig = async (
@@ -34,9 +34,9 @@ export const bundle = async (root: string) => {
 };
 
 export const SSGBuild = async (root: string) => {
-    const [clientBundle] = await bundle(root);
-    const serverEntryPath = join(root, '.temp/server/server-entry.js')
-    const {render} = await import(serverEntryPath)
+  const [clientBundle] = await bundle(root);
+  const serverEntryPath = join(root, '.temp/server/server-entry.js');
+  const { render } = await import(serverEntryPath);
 
-    await renderPage(root, render, clientBundle)
-}
+  await renderPage(root, render, clientBundle);
+};
