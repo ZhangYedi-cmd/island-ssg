@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from "react";
 
-export const Content: React.FC = () => {
-
-    return (<>
-        hello
-
-    </>)
+export const Content = () => {
+    return (
+        <>
+            this is Content
+        </>
+    )
 };

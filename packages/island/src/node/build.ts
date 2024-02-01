@@ -1,41 +1,10 @@
 import { build as viteBuild, InlineConfig } from 'vite';
 import { CLIENT_ENTRY_PATH, SERVER_ENTRY_PATH } from './constants';
 import { RollupOutput } from 'rollup';
+import {join} from "path";
+import {renderPage} from "./renderPage";
 
-export const CSRBuild = async (root: string) => {
-  return viteBuild({
-    root,
-    mode: 'production',
-    build: {
-      outDir: 'build',
-      rollupOptions: {
-        input: CLIENT_ENTRY_PATH,
-        output: {
-          format: 'esm'
-        }
-      }
-    }
-  });
-};
-
-export const SSRBuild = async (root: string) => {
-  return viteBuild({
-    root,
-    mode: 'production',
-    build: {
-      ssr: true,
-      outDir: '.temp',
-      rollupOptions: {
-        input: SERVER_ENTRY_PATH,
-        output: {
-          format: 'cjs'
-        }
-      }
-    }
-  });
-};
-
-export const builder = async (root: string) => {
+export const bundle = async (root: string) => {
   const resolveBuildConfig = async (
     isServer: boolean
   ): Promise<InlineConfig> => ({
@@ -63,3 +32,11 @@ export const builder = async (root: string) => {
 
   return [clientBundle, serverBundle] as [RollupOutput, RollupOutput];
 };
+
+export const SSGBuild = async (root: string) => {
+    const [clientBundle] = await bundle(root);
+    const serverEntryPath = join(root, '.temp/server/server-entry.js')
+    const {render} = await import(serverEntryPath)
+
+    await renderPage(root, render, clientBundle)
+}
